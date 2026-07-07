@@ -1,0 +1,2255 @@
+[
+  {
+    "titulo": "Corona del abad Teodosio",
+    "tipo_objeto": "Corona votiva",
+    "clasificacion": [
+      "Orfebrería",
+      "Epigrafía",
+      "Objetos votivos"
+    ],
+    "conjunto": "Tesoro de Guarrazar",
+    "contexto": "Reinado de Carlos IV",
+    "produccion": "Toledo [provincia]",
+    "datacion": "650-700",
+    "materia": [
+      "Oro",
+      "Perla",
+      "Zafiro"
+    ],
+    "tecnica": [
+      "Estampado",
+      "Repujado",
+      "Calado",
+      "Engastado"
+    ],
+    "dimensiones": {
+      "altura_cm": 24,
+      "diametro_cm": 10
+    },
+    "inventario": "10012363",
+    "creditos": {
+      "texto": "Amelia Aranda Huete",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Cruz de Lucecio",
+    "tipo_objeto": "Cruz votiva",
+    "conjunto": "Tesoro de Guarrazar",
+    "contexto": "Reino visigodo",
+    "produccion": "Toledo [provincia]",
+    "datacion": "650-700",
+    "materia": [
+      "Oro",
+      "Zafiro"
+    ],
+    "tecnica": [
+      "Estampado",
+      "Incisión"
+    ],
+    "dimensiones": {
+      "altura_cm": 21.7,
+      "anchura_cm": 11.8,
+      "profundidad_cm": 0.5
+    },
+    "inventario": "10012362",
+    "creditos": {
+      "texto": "Amelia Aranda Huete",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Fragmento del forro de ataúd de Leonor de Plantagenet",
+    "tipo_objeto": "Forro, fragmento",
+    "clasificacion": [
+      "Textiles"
+    ],
+    "contexto": "",
+    "produccion": "España",
+    "datacion": "Anterior a 1214",
+    "materia": [
+      "Seda",
+      "Hilo metálico"
+    ],
+    "tecnica": [
+      "Lampás",
+      "Entorchado"
+    ],
+    "dimensiones": {
+      "altura_cm": 63,
+      "anchura_cm": 38
+    },
+    "inventario": "00651956",
+    "creditos": {
+      "texto": "María Barrigón Montañés"
+    }
+  },
+  {
+    "titulo": "Fragmento del forro de ataúd",
+    "tipo_objeto": "Forro, fragmento",
+    "produccion": "Asia",
+    "contexto": "Reinado de Alfonso XI",
+    "datacion": "Anterior a 1333",
+    "materia": [
+      "Seda",
+      "Hilo metálico"
+    ],
+    "tecnica": [
+      "Lampás"
+    ],
+    "dimensiones": {
+      "altura_cm": 34.5,
+      "anchura_cm": 54
+    },
+    "inventario": "00653819",
+    "creditos": {
+      "texto": "María Barrigón Montañés"
+    }
+  },
+  {
+    "titulo": "Virgen con el Niño",
+    "tipo_objeto": "Bulto redondo",
+    "clasificacion": [
+      "Escultura religiosa"
+    ],
+    "contexto": [
+      "Edad Contemporánea",
+      "Escuela italiana",
+      "Gótico"
+    ],
+    "produccion": "Italia",
+    "datacion": "1401-1500",
+    "materia": [
+      "Alabastro",
+      "Metal"
+    ],
+    "tecnica": [
+      "Esculpido",
+      "Dorado"
+    ],
+    "dimensiones": {
+      "altura_cm": 52,
+      "anchura_cm": 22,
+      "profundidad_cm": 11
+    },
+    "inventario": "00671180",
+    "creditos": {
+      "texto": "Ana García Sanz",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Retrato de Felipe III, duque de Borgoña, llamado Felipe el Bueno",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": [
+      "Pintura retratística"
+    ],
+    "autor": "Weyden, Rogier van der",
+    "contexto": [
+      "Gótico",
+      "Escuela flamenca"
+    ],
+    "produccion": "Bruselas",
+    "datacion": "Hacia 1450",
+    "materia": [
+      "Madera"
+    ],
+    "soporte": "Tabla",
+    "tecnica": [
+      "Pintura al óleo"
+    ],
+    "dimensiones": {
+      "altura_cm": 51,
+      "anchura_cm": 36.9
+    },
+    "inventario": "10010172",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa"
+    }
+  },
+  {
+  "titulo": "Olimpia, reina de Macedonia",
+  "tipo_objeto": "Relieve",
+  "clasificacion": ["Escultura relievaria"],
+  "autor": "Settignano, Desiderio da",
+  "contexto": ["Renacimiento italiano"],
+  "produccion": "Italia",
+  "datacion": "1460-1464",
+  "materia": ["Mármol", "Madera"],
+  "tecnica": ["Esculpido", "Tallado", "Dorado"],
+  "dimensiones": {
+    "altura_cm": 73,
+    "anchura_cm": 52,
+    "profundidad_cm": 8.5
+  },
+  "inventario": "10040081",
+  "creditos": {
+    "texto": "Virginia Albarrán Martín"
+  }
+},
+{
+  "titulo": "San Juan Bautista",
+  "tipo_objeto": "Bulto redondo",
+  "clasificacion": ["Escultura religiosa"],
+  "autor": "Arca, Niccoló dell",
+  "produccion": "Bolonia",
+  "datacion": "1475-1500",
+  "materia": ["Alabastro"],
+  "tecnica": ["Tallado"],
+  "dimensiones": {
+    "altura_cm": 76,
+    "anchura_cm": 22,
+    "profundidad_cm": 20.2
+  },
+  "inventario": "10034469",
+  "creditos": {
+    "texto": "María Jesús Herrero Sanz, Almudena Pérez de Tudela Gabaldón",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Nacimiento de Jesús",
+  "tipo_objeto": "Tapiz",
+  "contexto": ["Reinado de Isabel I de Castilla", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Bruselas",
+  "datacion": "Hacia 1492",
+  "materia": ["Lana", "Seda", "Oro", "Plata"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 210.5,
+    "anchura_cm": 279
+  },
+  "inventario": "10005862",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "La resurrección de Lázaro",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 27.5,
+    "anchura_cm": 21.9
+  },
+  "inventario": "10002019",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La transfiguración",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26.9,
+    "anchura_cm": 21.9
+  },
+  "inventario": "10002030",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Cristo ante Pilatos",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 25.8,
+    "anchura_cm": 21.2
+  },
+  "inventario": "10002031",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Cristo y la Magdalena en casa de Simón el Fariseo",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 25.6,
+    "anchura_cm": 21.4
+  },
+  "inventario": "10002032",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La venida del Espíritu Santo",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 27,
+    "anchura_cm": 21
+  },
+  "inventario": "10002023",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Cristo y la mujer cananea",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26.5,
+    "anchura_cm": 21.4
+  },
+  "inventario": "10002022",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Políptico de Isabel la Católica",
+  "tipo_objeto": "Políptico",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 93,
+    "anchura_cm": 156.5
+  },
+  "inventario": "19003471",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "La tempestad calmada",
+  "tipo_objeto": "Cuadro",
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Reinado de Isabel I de Castilla", "Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26,
+    "anchura_cm": 20.8
+  },
+  "inventario": "10002018",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La bajada de Cristo al Limbo",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26,
+    "anchura_cm": 21
+  },
+  "inventario": "10002020",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La entrada de Cristo en Jerusalén",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26.2,
+    "anchura_cm": 21.2
+  },
+  "inventario": "10002024",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "El prendimiento de Cristo",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26.8,
+    "anchura_cm": 21.2
+  },
+  "inventario": "10002025",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La cena de Emaús",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26.4,
+    "anchura_cm": 21.9
+  },
+  "inventario": "10002027",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La aparición de Cristo a María Magdalena",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26,
+    "anchura_cm": 20.8
+  },
+  "inventario": "10002028",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Las tres Marías contemplando el sepulcro vacío",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 26.7,
+    "anchura_cm": 21.4
+  },
+  "inventario": "10002029",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "La multiplicación de los panes y los peces",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 27,
+    "anchura_cm": 22
+  },
+  "inventario": "10002021",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Los improperios en la casa de Caifás",
+  "tipo_objeto": "Cuadro",
+  "autor": "Flandes, Juan de",
+  "conjunto": "Políptico de Isabel la Católica",
+  "contexto": ["Reinado de Isabel I de Castilla", "Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1496-1504",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 25.8,
+    "anchura_cm": 20.4
+  },
+  "inventario": "10002026",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Capacete de Fernando el Católico",
+  "tipo_objeto": "Capacete",
+  "clasificacion": ["Armas y armaduras"],
+  "contexto": [],
+  "produccion": "España",
+  "datacion": "Hacia 1500",
+  "materia": ["Acero", "Latón", "Oro"],
+  "tecnica": ["Forjado", "Cincelado", "Repujado", "Grabado", "Dorado"],
+  "dimensiones": {
+    "altura_cm": 25,
+    "anchura_cm": 24.5,
+    "longitud_cm": 31.3
+  },
+  "inventario": "10000057",
+  "creditos": {
+    "texto": "Álvaro Soler del Campo",
+    "foto": "David Blázquez"
+  }
+},
+{
+  "titulo": "Retrato de Isabel la Católica",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura retratística"],
+  "autor": "Flandes, Juan de",
+  "contexto": ["Tardogótico español", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "España",
+  "datacion": "1500-1504",
+  "materia": ["Pino"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 63,
+    "anchura_cm": 54
+  },
+  "inventario": "10072266",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Silla de montar",
+  "tipo_objeto": "Silla de montar",
+  "clasificacion": ["Armas y armaduras"],
+  "contexto": [],
+  "produccion": "Flandes Occidental",
+  "datacion": "Hacia 1500",
+  "materia": ["Acero", "Madera", "Textil"],
+  "tecnica": ["Forjado", "Repujado"],
+  "dimensiones": {
+    "altura_cm": 66,
+    "anchura_cm": 58,
+    "longitud_cm": 51.5
+  },
+  "inventario": "10000562",
+  "creditos": {
+    "texto": "Álvaro Soler del Campo",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Cumplimiento de las profecías en el nacimiento del Hijo de Dios",
+  "tipo_objeto": "Tapiz",
+  "clasificacion": ["Textiles"],
+  "autor": "Tapiz: Aelst, Pierre van; Diseño: Atribuido a Roome, Jan van",
+  "conjunto": "Episodios de la vida de la Virgen",
+  "contexto": ["Edad Media", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Bruselas",
+  "datacion": "1500-1502",
+  "materia": ["Lana", "Seda", "Oro", "Plata"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 361,
+    "anchura_cm": 448
+  },
+  "inventario": "10005808",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín"
+  }
+},
+{
+  "titulo": "Búcaro",
+  "tipo_objeto": "Búcaro",
+  "clasificacion": ["Materiales cerámicos"],
+  "contexto": [],
+  "produccion": "Estremoz",
+  "datacion": "1500-1550",
+  "materia": ["Barro"],
+  "tecnica": ["Torneado", "Incisión"],
+  "dimensiones": {
+    "altura_cm": 7.5,
+    "anchura_cm": 10,
+    "diametro_cm": 7.6
+  },
+  "inventario": "00619094",
+  "creditos": {
+    "texto": "María José Suárez Martínez",
+    "foto": "Mario Sedeño"
+  }
+},{
+  "titulo": "Santa Clara de Asís con la custodia",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa"],
+  "autor": "Maestro de Portillo",
+  "contexto": ["Renacimiento español", "Escuela española"],
+  "produccion": "España",
+  "datacion": "1500-1530",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo", "Dorado", "Esgrafiado"],
+  "dimensiones": {
+    "altura_cm": 82,
+    "anchura_cm": 58
+  },
+  "inventario": "00670165",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "El triunfo del Tiempo",
+  "tipo_objeto": "Tapiz",
+  "clasificacion": ["Textiles"],
+  "autor": "Diseño del campo: Atribuido a Coter, Colyn de",
+  "contexto": ["Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Bruselas",
+  "datacion": "1502-1504",
+  "materia": ["Lana", "Seda"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 342,
+    "anchura_cm": 338
+  },
+  "inventario": "10247062",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín"
+  }
+},
+{
+  "titulo": "Nacimiento de Cristo",
+  "tipo_objeto": "Tapiz",
+  "clasificacion": ["Textiles"],
+  "autor": "Tapiz: Atribuido a Aelst, Pierre van; Diseño: Atribuido a Maestro de los Paños de Oro",
+  "conjunto": "Paños de oro",
+  "contexto": ["Gótico"],
+  "produccion": "Bruselas",
+  "datacion": "Documentado en 1502",
+  "materia": ["Lana", "Seda", "Oro", "Plata"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 319,
+    "anchura_cm": 338
+  },
+  "inventario": "10014828",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín"
+  }
+},
+{
+  "titulo": "Misa de san Gregorio",
+  "tipo_objeto": "Tapiz",
+  "clasificacion": ["Textiles"],
+  "autor": "Tapiz: Aelst, Pierre van; Diseño del campo: Atribuido a Coter, Colyn de",
+  "conjunto": "Misa de san Gregorio",
+  "contexto": ["Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Bruselas",
+  "datacion": "1502-1504",
+  "materia": ["Lana", "Seda", "Oro", "Plata"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 358,
+    "anchura_cm": 404
+  },
+  "inventario": "10005810",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín"
+  }
+},
+{
+  "titulo": "Testera",
+  "tipo_objeto": "Testera",
+  "clasificacion": ["Armas y armaduras"],
+  "autor": "Ghindertaelen, Antoine van",
+  "contexto": [],
+  "produccion": "Bruselas",
+  "datacion": "Hacia 1505",
+  "materia": ["Acero", "Latón", "Oro"],
+  "tecnica": ["Forjado", "Repujado", "Aguafuerte", "Dorado"],
+  "dimensiones": {
+    "altura_cm": 34.5,
+    "anchura_cm": 69.5,
+    "profundidad_cm": 24.5
+  },
+  "inventario": "19000366",
+  "creditos": {
+    "texto": "Álvaro Soler del Campo",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "La Gracia publica los Honores",
+  "tipo_objeto": "Tapiz",
+  "clasificacion": ["Textiles"],
+  "autor": "Tapiz: Atribuido a Aelst, Pieter van",
+  "conjunto": "Moralidades",
+  "contexto": ["Edad Media", "Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Bruselas",
+  "datacion": "Hacia 1515",
+  "materia": ["Lana", "Seda", "Oro", "Plata"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 421,
+    "anchura_cm": 570
+  },
+  "inventario": "10004093",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín"
+  }
+},
+{
+  "titulo": "Retrato de Odet de Foix, vizconde de Lautrec",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura retratística"],
+  "autor": "Sittow, Michel",
+  "contexto": ["Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Países Bajos",
+  "datacion": "1515-1517",
+  "materia": ["Madera"],
+  "soporte": "Tabla",
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 33,
+    "anchura_cm": 28.6
+  },
+  "inventario": "10010169",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa"
+  }
+},
+{
+  "titulo": "Exhortación a las Virtudes",
+  "tipo_objeto": "Tapiz",
+  "clasificacion": ["Textiles"],
+  "autor": "Tapiz: Atribuido a Aelst, Pieter van",
+  "conjunto": "Moralidades",
+  "contexto": ["Tardogótico flamenco", "Escuela flamenca"],
+  "produccion": "Bruselas",
+  "datacion": "Hacia 1515",
+  "materia": ["Lana", "Seda", "Oro", "Plata"],
+  "tecnica": ["Tapiz"],
+  "dimensiones": {
+    "altura_cm": 419,
+    "anchura_cm": 560
+  },
+  "inventario": "10005725",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín"
+  }
+},
+{
+  "titulo": "Victoria augurando un feliz reinado a Carlos I",
+  "tipo_objeto": "Medalla",
+  "clasificacion": ["Medallística"],
+  "contexto": ["Renacimiento"],
+  "datacion": "1516-1517",
+  "materia": ["Bronce"],
+  "tecnica": ["Fundido"],
+  "dimensiones": {
+    "diametro_mm": 34.35,
+    "grosor_mm": 0.3,
+    "peso_g": 15.1
+  },
+  "inventario": "10233301",
+  "creditos": {
+    "texto": "Rocío Fernández-Tresguerres García",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+    "titulo": "Paisaje con san Cristóbal y el Niño Jesús",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+    "autor": "Patinir, Joachim",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bélgica",
+    "datacion": "Hacia 1521",
+    "materia": ["Roble"],
+    "soporte": "Tabla",
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 144.5,
+      "anchura_cm": 190
+    },
+    "inventario": "10014400",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa"
+   }
+ },
+ {
+    "titulo": "Cristo de la Misericordia",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Pannemaker, Pieter; Diseño: Orley, Bernard van",
+    "contexto": ["Tardogótico flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "Hacia 1523",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 237,
+      "anchura_cm": 215
+    },
+    "inventario": "10034480",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+  {
+    "titulo": "Cristo con la cruz a cuestas",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+    "autor": "Coxcie, Michiel",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bélgica",
+    "datacion": "Hacia 1530",
+    "materia": ["Madera"],
+    "soporte": "Tabla",
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 238.5,
+      "anchura_cm": 173
+    },
+    "inventario": "10010189",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa"
+    }
+  },
+  {
+    "titulo": "Hércules sostiene la esfera celeste",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Atribuido a Vezeleer, Joris; Diseño: Atribuido a Orley, Bernard van",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "1530-1535",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 350,
+      "anchura_cm": 310
+    },
+    "inventario": "10005823",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "Retrato de caballero con capa terciada y gorra",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura retratística"],
+    "autor": "La Haye, Corneille de -Corneille de Lyon-",
+    "contexto": ["Renacimiento nórdico", "Escuela francesa"],
+    "produccion": "Francia",
+    "datacion": "Hacia 1534",
+    "materia": ["Madera"],
+    "soporte": "Tabla",
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 28,
+      "anchura_cm": 24
+    },
+    "inventario": "10010171",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa"
+    }
+  },
+  {
+    "titulo": "Entrevista de Escipión y Aníbal",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Vlierden, Balthazar van; Diseño: Romano, Giulio; Diseño: Penni, Giovan Francesco -il Fattore-",
+    "contexto": ["Renacimiento"],
+    "produccion": "Bruselas",
+    "datacion": "Hacia 1544",
+    "materia": ["Lana", "Seda"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 485,
+      "anchura_cm": 806
+    },
+    "inventario": "10005900",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+  {
+    "titulo": "Armadura de Mühlberg para Caballería",
+    "tipo_objeto": "Armadura",
+    "clasificacion": ["Armas y armaduras"],
+    "autor": "Helmschmid, Desiderius",
+    "contexto": [],
+    "produccion": "Augsburgo",
+    "datacion": "1544",
+    "materia": ["Acero", "Hierro", "Oro", "Cuero"],
+    "tecnica": ["Repujado", "Dorado", "Aguafuerte", "Cincelado"],
+    "dimensiones": {
+      "altura_cm": 240,
+      "anchura_cm": 270,
+      "longitud_cm": 106
+    },
+    "inventario": "19000286",
+    "creditos": {
+      "texto": "Álvaro Soler del Campo"
+    }
+  },
+  {
+    "titulo": "Medalla dedicada al 44 aniversario de Carlos V",
+    "tipo_objeto": "Medalla",
+    "clasificacion": ["Medallística"],
+    "autor": "Reinhardt, Hans",
+    "contexto": ["Renacimiento"],
+    "produccion": "Alemania",
+    "datacion": "1544",
+    "materia": ["Bronce"],
+    "tecnica": ["Fundido"],
+    "dimensiones": {
+      "diametro_mm": 63.9,
+      "grosor_mm": 0.45,
+      "peso_g": 53.7
+    },
+    "inventario": "10233302",
+    "creditos": {
+      "texto": "Rocío Fernández-Tresguerres García",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Victoria de Mühlberg",
+    "tipo_objeto": "Medalla",
+    "clasificacion": ["Medallística"],
+    "autor": "Grabado: Leoni, Leone",
+    "contexto": ["Renacimiento"],
+    "produccion": "Milán",
+    "datacion": "1547-1549",
+    "materia": ["Plata"],
+    "tecnica": ["Fundido"],
+    "dimensiones": {
+      "diametro_mm": 73,
+      "grosor_mm": 6,
+      "peso_g": 87.15
+    },
+    "inventario": "10233303",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "La revista de las tropas en Barcelona",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Pannemaker, Wilhelm; Diseño: Coecke van Aelst, Pieter; Diseño: Vermeyen, Jan Cornelisz",
+    "contexto": ["Renacimiento"],
+    "produccion": "Bruselas",
+    "datacion": "1548-1554",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 538,
+      "anchura_cm": 715.5
+    },
+    "inventario": "10005908",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+  {
+    "titulo": "Tribulaciones de la vida humana",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "1550-1560",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 291,
+      "anchura_cm": 372
+    },
+    "inventario": "10004012",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+  {
+    "titulo": "Armadura ecuestre",
+    "tipo_objeto": "Armadura",
+    "clasificacion": ["Armaduras"],
+    "autor": "Negroli, Francesco",
+    "contexto": ["Renacimiento"],
+    "produccion": "Milán",
+    "datacion": "1550-1553",
+    "materia": ["Acero", "Oro", "Plata"],
+    "tecnica": ["Forjado", "Damasquinado", "Dorado", "Pavonado"],
+    "inventario": "19000284",
+    "creditos": {
+      "texto": "Álvaro Soler del Campo",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Cáliz",
+    "tipo_objeto": "Cáliz",
+    "clasificacion": ["Platería", "Objetos religiosos"],
+    "autor": "Gutiérrez, Diego",
+    "contexto": [],
+    "produccion": "León [provincia]",
+    "datacion": "1550-1600",
+    "materia": ["Plata"],
+    "tecnica": ["Fundido", "Moldeado", "Cincelado", "Torneado", "Dorado"],
+    "dimensiones": {
+      "altura_cm": 29,
+      "profundidad_cm": 17.5
+    },
+    "inventario": "10012359",
+    "creditos": {
+      "texto": "Amelia Aranda Huete",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Duomo de Milán",
+    "tipo_objeto": "",
+    "clasificacion": ["Objetos religiosos"],
+    "autor": "",
+    "contexto": [],
+    "produccion": "Italia",
+    "datacion": "1550-1600",
+    "materia": ["Hierro", "Oro"],
+    "tecnica": ["Fundido", "Cincelado", "Dorado", "Damasquinado"],
+    "dimensiones": {
+      "altura_cm": 69.8,
+      "anchura_cm": 60,
+      "profundidad_cm": 64.5
+    },
+    "inventario": "10044156",
+    "creditos": {
+      "texto": "Almudena Pérez de Tudela Gabaldón",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "El Jardín de las Delicias",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "1550-1560",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 288,
+      "anchura_cm": 497
+    },
+    "inventario": "10004013",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+ },
+ {
+    "titulo": "Monos trepando por columnas",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Baudouyns, Jean; Diseño: Atribuido a Vredeman de Vries, Hans; Diseño: Atribuido a Floris, Cornelis",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "Fechado en 1554",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 355,
+      "anchura_cm": 263
+    },
+    "inventario": "10005821",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+
+  {
+    "titulo": "Relicario de doña Juana de Austria",
+    "tipo_objeto": "",
+    "clasificacion": ["Objetos rituales y ceremoniales"],
+    "autor": "Encalada, Lázaro de",
+    "contexto": [],
+    "produccion": "Valladolid",
+    "datacion": "Hacia 1554",
+    "materia": ["Esmalte", "Plata"],
+    "tecnica": ["Fundido", "Cincelado", "Dorado", "Esmaltado"],
+    "dimensiones": {
+      "altura_cm": 37.5,
+      "anchura_cm": 24.5,
+      "profundidad_cm": 8.2
+    },
+    "inventario": "00612674",
+    "creditos": {
+      "texto": "Ana García Sanz",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "Monos trepando por columnas",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Baudouyns, Jean; Diseño: Atribuido a Vredeman de Vries, Hans; Diseño: Atribuido a Floris, Cornelis",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "Fechado en 1554",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 355,
+      "anchura_cm": 263
+    },
+    "inventario": "10005821",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+
+  {
+    "titulo": "Relicario de doña Juana de Austria",
+    "tipo_objeto": "",
+    "clasificacion": ["Objetos rituales y ceremoniales"],
+    "autor": "Encalada, Lázaro de",
+    "contexto": [],
+    "produccion": "Valladolid",
+    "datacion": "Hacia 1554",
+    "materia": ["Esmalte", "Plata"],
+    "tecnica": ["Fundido", "Cincelado", "Dorado", "Esmaltado"],
+    "dimensiones": {
+      "altura_cm": 37.5,
+      "anchura_cm": 24.5,
+      "profundidad_cm": 8.2
+    },
+    "inventario": "00612674",
+    "creditos": {
+      "texto": "Ana García Sanz",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "Arnés de ondas o nubes",
+    "tipo_objeto": "Armadura",
+    "clasificacion": ["Armas y armaduras"],
+    "autor": "Grosschedel, Wolfgang; Grosschedel, Franz",
+    "contexto": [],
+    "produccion": "Landshut",
+    "datacion": "Estilísticamente hacia 1554",
+    "materia": ["Acero", "Oro"],
+    "tecnica": ["Cincelado", "Aguafuerte", "Dorado", "Repujado"],
+    "dimensiones": {
+      "altura_cm": 173,
+      "anchura_cm": 71
+    },
+    "inventario": "19000318",
+    "creditos": {
+      "texto": "Álvaro Soler del Campo",
+      "foto": "David Blázquez"
+    }
+  },
+
+  {
+    "titulo": "Perseo libera a Andrómeda",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Pannemaker, Wilhelm; Diseño: Atribuido a Vermeyen, Jan Cornelisz; Diseño: Atribuido a Coecke van Aelts, Pieter",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "Hacia 1556",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 363,
+      "anchura_cm": 406
+    },
+    "inventario": "10026391",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+
+  {
+    "titulo": "Embarque en el Arca de Noé",
+    "tipo_objeto": "Cartón para tapiz",
+    "clasificacion": ["Pintura religiosa"],
+    "autor": "Coxcie, Michiel",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Flandes Occidental",
+    "datacion": "Anterior a 1559",
+    "materia": [],
+    "soporte": "Cartón sobre lienzo",
+    "tecnica": ["Temple", "Acuarela", "Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 311.5,
+      "anchura_cm": 508.5
+    },
+    "inventario": "10007058",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "Vertumno transformado en agricultor",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Diseñador: Vermeyen, Jan Cornelisz",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "Hacia 1560",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 440,
+      "anchura_cm": 654
+    },
+    "inventario": "10004087",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "La lapidación de san Esteban",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Diseño: Sanzio, Rafael; Tapiz: Tieghem, Jan van; Tapiz: Gheteels, Frans",
+    "contexto": [],
+    "produccion": "Bruselas",
+    "datacion": "Hacia 1560",
+    "materia": ["Lana", "Seda"],
+    "tecnica": ["Tapiz de bajo lizo"],
+    "dimensiones": {
+      "altura_cm": 487,
+      "anchura_cm": 592
+    },
+    "inventario": "10004082",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín",
+      "foto": "David Blázquez"
+    }
+  },
+
+  {
+    "titulo": "Espinario",
+    "tipo_objeto": "Bulto redondo",
+    "clasificacion": ["Escultura exenta"],
+    "autor": "Porta, Guglielmo della",
+    "contexto": ["República romana", "Ciudad del Vaticano", "Reinado de Felipe II"],
+    "produccion": "Roma",
+    "datacion": "Hacia 1561",
+    "materia": ["Bronce"],
+    "tecnica": ["Fundido"],
+    "dimensiones": {
+      "altura_cm": 77,
+      "anchura_cm": 53,
+      "profundidad_cm": 58.2
+    },
+    "inventario": "10243322",
+    "creditos": {
+      "texto": "Virginia Albarrán Martín"
+    }
+  },
+
+  {
+    "titulo": "Noé construye el Arca",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tapiz: Pannemaker, Wilhelm; Diseño: Coxcie, Michiel",
+    "contexto": ["Renacimiento flamenco", "Escuela flamenca"],
+    "produccion": "Bruselas",
+    "datacion": "1563-1566",
+    "materia": ["Lana", "Seda", "Oro", "Plata"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 433,
+      "anchura_cm": 660
+    },
+    "inventario": "10004051",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín"
+    }
+  },
+
+  {
+    "titulo": "Cristo crucificado",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+    "autor": "Vecellio, Tiziano",
+    "contexto": ["Renacimiento italiano", "Escuela veneciana"],
+    "produccion": "Venecia",
+    "datacion": "Hacia 1565",
+    "materia": ["Madera"],
+    "soporte": "Lienzo",
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 240,
+      "anchura_cm": 135
+    },
+    "inventario": "10014803",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa"
+    }
+  },
+
+  {
+    "titulo": "Retablo del emperador Carlos V",
+    "tipo_objeto": "Altar portátil",
+    "clasificacion": ["Platería", "Objetos rituales y ceremoniales"],
+    "autor": "Rodríguez de Babia, Juan",
+    "contexto": [],
+    "produccion": "Madrid",
+    "datacion": "Documentado en 1567",
+    "materia": ["Ébano", "Plata", "Esmalte"],
+    "tecnica": ["Técnica de ebanistería", "Fundido", "Cincelado", "Dorado", "Esmaltado"],
+    "dimensiones": {
+      "altura_cm": 134,
+      "anchura_cm": 75,
+      "profundidad_cm": 11
+    },
+    "inventario": "10014748",
+    "creditos": {
+      "texto": "Almudena Pérez de Tudela Gabaldón"
+    }
+  },
+
+  {
+    "titulo": "Silla de tijera",
+    "tipo_objeto": "Mobiliario de reposo",
+    "clasificacion": [],
+    "autor": "",
+    "contexto": [],
+    "produccion": "China",
+    "datacion": "Hacia 1570",
+    "materia": ["Madera", "Hierro", "Cuero", "Cáñamo"],
+    "tecnica": ["Ensamblado", "Torneado", "Tejido", "Curtido", "Forjado", "Dorado", "Lacado"],
+    "dimensiones": {
+      "altura_cm": 85,
+      "anchura_cm": 54,
+      "profundidad_cm": 59
+    },
+    "inventario": "10014156",
+    "creditos": {
+      "texto": "Mario Mateos Martín",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "Casulla",
+    "tipo_objeto": "Casulla",
+    "clasificacion": ["Indumentaria", "Ámbito religioso"],
+    "autor": "Obrador de Bordados",
+    "contexto": ["Renacimiento"],
+    "produccion": "San Lorenzo de El Escorial",
+    "datacion": "1570-1572",
+    "materia": ["Seda", "Hilo metálico"],
+    "tecnica": ["Brocatel anillado", "Bordado de aplicación", "Damasco"],
+    "dimensiones": {
+      "altura_cm": 144,
+      "anchura_cm": 95,
+      "profundidad_cm": 30
+    },
+    "inventario": "10050211",
+    "creditos": {
+      "texto": "María Barrigón Montañés"
+    }
+  },
+
+  {
+    "titulo": "Capa pluvial",
+    "tipo_objeto": "Capa pluvial",
+    "clasificacion": ["Indumentaria", "Ámbito religioso"],
+    "autor": "Obrador de Bordados",
+    "contexto": ["Renacimiento"],
+    "produccion": "San Lorenzo de El Escorial",
+    "datacion": "1570-1572",
+    "materia": ["Seda", "Hilo metálico"],
+    "tecnica": ["Brocatel anillado", "Bordado de aplicación", "Damasco"],
+    "dimensiones": {
+      "altura_cm": 150,
+      "anchura_cm": 308
+    },
+    "inventario": "10050216",
+    "creditos": {
+      "texto": "María Barrigón Montañés"
+    }
+  },
+
+  {
+    "titulo": "Terno de san Lorenzo",
+    "tipo_objeto": "Terno",
+    "clasificacion": ["Indumentaria", "Ámbito religioso"],
+    "autor": "Obrador de Bordados",
+    "contexto": ["Renacimiento"],
+    "produccion": "San Lorenzo de El Escorial",
+    "datacion": "1570-1572",
+    "materia": ["Seda", "Hilo metálico"],
+    "tecnica": ["Brocatel anillado", "Bordado de aplicación", "Damasco"],
+    "inventario": "19007070",
+    "creditos": {
+      "texto": "María Barrigón Montañés"
+    }
+  },
+  {
+    "titulo": "Terno de san lorenzo",
+    "tipo_objeto": "Dalmática",
+    "clasificacion": ["Indumentaria", "Ámbito religioso"],
+    "autor": "Obrador de Bordados",
+    "contexto": ["Renacimiento"],
+    "produccion": "San Lorenzo de El Escorial",
+    "datacion": "1570-1572",
+    "materia": ["Seda", "Hilo metálico"],
+    "tecnica": ["Brocatel anillado", "Bordado de aplicación", "Damasco"],
+    "dimensiones": {
+      "altura_cm": 121,
+      "anchura_cm": 162.5
+    },
+    "inventario": "10050213",
+    "creditos": {
+      "texto": "María Barrigón Montañés",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Emparrados y niños cogiendo uvas",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles"],
+    "autor": "Tejido: Pannemaker, Wilhelm; Diseño: Lodi da Cremona, Giovanni Battista",
+    "contexto": ["Renacimiento"],
+    "produccion": "Bruselas",
+    "datacion": "A partir de 1571",
+    "materia": ["Lana", "Seda"],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 395,
+      "anchura_cm": 426.5
+    },
+    "inventario": "10002670",
+    "creditos": {
+      "texto": "Almudena Pérez de Tudela Gabaldón, Roberto Muñoz Martín"
+    }
+  },
+   {
+    "titulo": "La adoración del nombre de Jesús",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura alegórica"],
+    "autor": "Theotocopoulos, Domenico - el Greco -",
+    "contexto": ["Renacimiento español", "Escuela española"],
+    "produccion": "España",
+    "datacion": "1577-1579",
+    "soporte": "Lienzo",
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 162,
+      "anchura_cm": 130.5
+    },
+    "inventario": "10014683",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa"
+    }
+  },
+
+  {
+    "titulo": "Homenaje a Juan de Herrera, arquitecto del rey",
+    "tipo_objeto": "Medalla",
+    "clasificacion": ["Medallística"],
+    "autor": "Trezzo, Jacopo Nizzola da",
+    "contexto": ["Renacimiento"],
+    "produccion": "España",
+    "datacion": "1578",
+    "materia": ["Bronce"],
+    "tecnica": ["Fundido"],
+    "dimensiones": {
+      "diametro_mm": 50.35,
+      "peso_g": 38.52
+    },
+    "inventario": "10234038",
+    "creditos": {
+      "texto": "Rocío Fernández-Tresguerres García",
+      "foto": "Mario Sedeño"
+    }
+  },
+
+  {
+    "titulo": "Reloj de custodia con candil",
+    "tipo_objeto": "Reloj",
+    "clasificacion": ["Medición del tiempo"],
+    "autor": "Evalo, Hans de",
+    "contexto": ["Renacimiento"],
+    "produccion": "Madrid",
+    "datacion": "1583",
+    "materia": ["Bronce", "Oro", "Plata", "Acero"],
+    "tecnica": ["Labrado", "Dorado", "Cincelado", "Forjado"],
+    "dimensiones": {
+      "altura_cm": 52.5,
+      "anchura_cm": 17,
+      "profundidad_cm": 14,
+      "diametro_cm": 17.5
+    },
+    "inventario": "10014457",
+    "creditos": {
+      "texto": "Amelia Aranda Huete"
+    }
+  },
+
+  {
+    "titulo": "Arqueta de Isabel Clara Eugenia",
+    "tipo_objeto": "Arqueta",
+    "clasificacion": ["Mobiliario", "Objetos contenedores"],
+    "produccion": "Milán",
+    "datacion": "1585-1887",
+    "materia": ["Plata", "Oro", "Piedra preciosa", "Piedra dura", "Vidrio de plomo"],
+    "tecnica": ["Fundido", "Cincelado", "Tallado", "Engastado"],
+    "dimensiones": {
+      "altura_cm": 39,
+      "anchura_cm": 58.5,
+      "profundidad_cm": 42.2
+    },
+    "inventario": "10012357",
+    "creditos": {
+      "texto": "Almudena Pérez de Tudela Gabaldón"
+    }
+  },
+
+  {
+    "titulo": "Templete",
+    "tipo_objeto": "Templete",
+    "clasificacion": ["Objetos religiosos"],
+    "produccion": "Florencia",
+    "datacion": "Anterior a 1588",
+    "materia": ["Cristal de roca", "Piedra dura", "Plata"],
+    "tecnica": ["Cincelado", "Tallado", "Engastado", "Dorado"],
+    "dimensiones": {
+      "altura_cm": 63,
+      "anchura_cm": 30.5,
+      "profundidad_cm": 30
+    },
+    "inventario": "10044167",
+    "creditos": {
+      "texto": "Almudena Pérez de Tudela Gabaldón"
+    }
+  },
+
+  {
+    "titulo": "La Sagrada Familia con san Juanito",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura religiosa", "Pintura de caballete"],
+    "autor": "Fontana, Lavinia",
+    "contexto": ["Manierismo", "Escuela italiana"],
+    "produccion": "Bolonia",
+    "datacion": "1589",
+    "soporte": "Lienzo",
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 191.5,
+      "anchura_cm": 153.8
+    },
+    "inventario": "10045145",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa",
+      "foto": "David Blázquez"
+    }
+  },
+  {
+    "titulo": "Armadura",
+    "tipo_objeto": "Armadura",
+    "clasificacion": ["Armas y armaduras"],
+    "autor": "Cesa, Pompeo della",
+    "produccion": "Milán",
+    "datacion": "Estilísticamente hacia 1590",
+    "materia": ["Acero", "Oro"],
+    "tecnica": ["Cincelado", "Aguafuerte", "Dorado", "Repujado"],
+    "dimensiones": {
+      "altura_cm": 179,
+      "anchura_cm": 75,
+      "profundidad_cm": 62
+    },
+    "inventario": "19000087",
+    "creditos": {
+      "texto": "Álvaro Soler del Campo",
+      "foto": "David Blázquez"
+    }
+  },
+  {
+    "titulo": "Arqueta",
+    "tipo_objeto": "Arqueta",
+    "clasificacion": ["Objetos religiosos", "Objetos contenedores"],
+    "produccion": "Augsburgo",
+    "datacion": "1590-1595",
+    "materia": ["Ébano", "Plata"],
+    "tecnica": ["Tallado", "Troquelado", "Cincelado", "Dorado"],
+    "dimensiones": {
+      "altura_cm": 30,
+      "anchura_cm": 32.5,
+      "profundidad_cm": 22
+    },
+    "inventario": "10044697",
+    "creditos": {
+      "texto": "Almudena Pérez de Tudela Gabaldón",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Testamento original del rey Felipe II",
+    "tipo_objeto": "Libro",
+    "autor": "Felipe II, Rey de España; Gasol, Jerónimo",
+    "produccion": "Madrid [comunidad autónoma]",
+    "datacion": "7 de marzo de 1594",
+    "materia": ["Papel", "Tinta de sepia"],
+    "soporte": "Papel verjurado; Encuadernación en piel roja estampada en oro por ambos lados",
+    "dimensiones": {
+      "altura_mm": 305,
+      "anchura_mm": 220,
+      "profundidad_mm": 12
+    },
+    "inventario": "Archivo General de Palacio, Libros y Registros, 7026"
+  },
+{
+  "titulo": "San Jerónimo",
+  "tipo_objeto": "Objeto religioso",
+  "clasificacion": ["Piedras duras", "Objetos religiosos"],
+  "datacion": "Documentado en 1597",
+  "materia": ["Plata", "Calcedonia", "Ágata", "Amatista", "Oro", "Esmalte"],
+  "tecnica": ["Tallado", "Dorado", "Cincelado", "Esmaltado"],
+  "dimensiones": {
+    "altura_cm": 27,
+    "anchura_cm": 21.2,
+    "profundidad_cm": 12
+  },
+  "inventario": "10012355",
+  "creditos": {
+    "texto": "Almudena Pérez de Tudela Gabaldón",
+    "foto": "Mario Sedeño"
+  }
+},
+ {
+    "titulo": "Jarra",
+    "tipo_objeto": "Jarra",
+    "clasificacion": ["Materiales cerámicos"],
+    "datacion": "1600-1700",
+    "materia": ["Barro", "Hojalata"],
+    "tecnica": ["Cocción", "Incisión", "Engobado", "Fundido", "Laminado"],
+    "dimensiones": {
+      "altura_cm": 27,
+      "anchura_cm": 14,
+      "diametro_cm": 14.2
+    },
+    "inventario": "00618472",
+    "creditos": {
+      "texto": "María José Suárez Martínez",
+      "foto": "Mario Sedeño"
+    }
+  },
+{
+  "titulo": "Búcaro",
+  "tipo_objeto": "Búcaro",
+  "clasificacion": ["Materiales cerámicos"],
+  "datacion": "1600-1700",
+  "materia": ["Barro"],
+  "tecnica": ["Torneado", "Incisión", "Troquelado"],
+  "dimensiones": {
+    "altura_cm": 8.2,
+    "anchura_cm": null,
+    "diametro_cm": 6.3
+  },
+  "inventario": "00619095",
+  "creditos": {
+    "texto": "María José Suárez Martínez",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Copa",
+  "tipo_objeto": "Copa",
+  "clasificacion": ["Materiales cerámicos", "Virreinato de Nueva España"],
+  "datacion": "1600-1700",
+  "materia": ["Barro"],
+  "tecnica": ["Incisión", "Torneado"],
+  "dimensiones": {
+    "altura_cm": 10,
+    "anchura_cm": 14.5,
+    "diametro_cm": 10.5
+  },
+  "inventario": "00619096",
+  "creditos": {
+    "texto": "María José Suárez Martínez",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "La adoración de los Magos",
+  "tipo_objeto": "Objeto ritual o ceremonial",
+  "clasificacion": ["Objetos rituales y ceremoniales", "Barroco flamenco", "Barroco italiano", "Escuela italiana"],
+  "datacion": "1600-1630",
+  "materia": ["Peral", "Ébano", "Diásporo", "Lapislázuli", "Amatista", "Bronce", "Cobre", "Vidrio de plomo"],
+  "tecnica": ["Tallado", "Chapeado", "Incrustación", "Pintura al óleo", "Cincelado", "Dorado"],
+  "dimensiones": {
+    "altura_cm": 94,
+    "anchura_cm": 54,
+    "profundidad_cm": 17
+  },
+  "inventario": "00620411",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": null
+  }
+},
+{
+  "titulo": "Custodia de mano",
+  "tipo_objeto": "Custodia de mano",
+  "clasificacion": ["Platería", "Objetos rituales y ceremoniales", "Barroco"],
+  "datacion": "1600-1650",
+  "materia": ["Plata", "Cobre", "Coral"],
+  "tecnica": ["Cincelado", "Grabado", "Dorado", "Engastado"],
+  "dimensiones": {
+    "altura_cm": 73,
+    "anchura_cm": 22,
+    "diametro_cm": 33
+  },
+  "inventario": "00630594",
+  "creditos": {
+    "texto": "Amelia Aranda Huete",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Arqueta",
+  "tipo_objeto": "Arqueta",
+  "clasificacion": ["Mobiliario de guardar", "Ámbito religioso", "Virreinato de Nueva España", "Arte virreinal", "Escuela mexicana"],
+  "datacion": "Hacia 1600",
+  "materia": ["Madera", "Pigmento", "Hierro"],
+  "tecnica": ["Ensamblado", "Policromado", "Forjado"],
+  "dimensiones": {
+    "altura_cm": 48.5,
+    "anchura_cm": 66,
+    "profundidad_cm": 35
+  },
+  "inventario": "00612072",
+  "creditos": {
+    "texto": "Ana García Sanz",
+    "foto": null
+  }
+},
+{
+  "titulo": "La Inmaculada Concepción de la Virgen María",
+  "tipo_objeto": "Enconchado",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete", "Virreinato de Nueva España"],
+  "datacion": "1600-1700",
+  "materia": [],
+  "tecnica": ["Enconchado", "Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 87,
+    "anchura_cm": 66,
+    "diametro_cm": null
+  },
+  "inventario": "00612503",
+  "creditos": {
+    "texto": "Ana García Sanz",
+    "foto": "Antonio Úbeda"
+  }
+},
+{
+  "titulo": "El paso del mar Rojo",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Barroco italiano", "Escuela italiana"],
+  "datacion": "1600-1617",
+  "materia": ["Ágata"],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 61,
+    "anchura_cm": 76.5,
+    "diametro_cm": null
+  },
+  "inventario": "10023230",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Retrato de Felipe III de busto y armado",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura retratística", "Pintura de caballete", "Barroco madrileño", "Escuela madrileña"],
+  "datacion": "Hacia 1603",
+  "materia": ["Madera"],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 76.8,
+    "anchura_cm": 58.8,
+    "diametro_cm": null
+  },
+  "inventario": "10003073",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": null
+  }
+},
+{
+  "titulo": "Retrato de Felipe III de busto y armado",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura retratística", "Pintura de caballete", "Barroco madrileño", "Escuela madrileña"],
+  "datacion": "Hacia 1603",
+  "materia": ["Madera"],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 76.8,
+    "anchura_cm": 58.8,
+    "diametro_cm": null
+  },
+  "inventario": "10003073",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": null
+  }
+},
+
+{
+  "titulo": "Salomé con la cabeza del Bautista",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete", "Barroco italiano", "Escuela italiana"],
+  "datacion": "Hacia 1607",
+  "materia": ["Madera"],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 138,
+    "anchura_cm": 169.5,
+    "diametro_cm": null
+  },
+  "inventario": "10010026",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": null
+  }
+},
+{
+  "titulo": "Retrato de la madre Mariana de San José",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura retratística", "Barroco español", "Escuela española"],
+  "datacion": "Hacia 1608",
+  "materia": [],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 116,
+    "anchura_cm": 95,
+    "diametro_cm": null
+  },
+  "inventario": "00622319",
+  "creditos": {
+    "texto": "Roberto Muñoz Martín",
+    "foto": "David Blázquez"
+  }
+},
+{
+  "titulo": "Calvario",
+  "tipo_objeto": "Objeto de medición del tiempo",
+  "clasificacion": ["Medición del tiempo"],
+  "datacion": "1610-1620",
+  "materia": ["Bronce", "Oro", "Plata"],
+  "tecnica": ["Dorado", "Cincelado"],
+  "dimensiones": {
+    "altura_cm": 33,
+    "anchura_cm": 13,
+    "profundidad_cm": 15
+  },
+  "inventario": "10137640",
+  "creditos": {
+    "texto": "Amelia Aranda Huete",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Jarro",
+  "tipo_objeto": "Jarro",
+  "clasificacion": ["Platería"],
+  "datacion": "Fechable por marca en o hacia 1612",
+  "materia": ["Plata"],
+  "tecnica": ["Fundido", "Cincelado", "Dorado", "Soldado"],
+  "dimensiones": {
+    "altura_cm": 15.5,
+    "anchura_cm": 18,
+    "profundidad_cm": 11.2
+  },
+  "inventario": "10012106",
+  "creditos": {
+    "texto": "Amelia Aranda Huete",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Armadura de parada de Felipe IV niño",
+  "tipo_objeto": "Armadura de niño",
+  "clasificacion": ["Armaduras", "Infantil"],
+  "datacion": "Fechable estilísticamente hacia 1614",
+  "materia": ["Acero", "Oro", "Latón", "Textil"],
+  "tecnica": ["Forjado", "Cincelado", "Repujado", "Grabado", "Dorado"],
+  "dimensiones": {
+    "altura_cm": null,
+    "anchura_cm": null,
+    "diametro_cm": null
+  },
+  "inventario": "19000246",
+  "creditos": {
+    "texto": "Álvaro Soler del Campo",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Armadura de parada de Felipe IV niño",
+  "tipo_objeto": "Armadura de niño",
+  "clasificacion": ["Armaduras", "Infantil"],
+  "datacion": "Fechable estilísticamente hacia 1614",
+  "materia": ["Acero", "Oro", "Plata", "Latón", "Textil"],
+  "tecnica": ["Forjado", "Cincelado", "Repujado", "Grabado", "Dorado", "Damasquinado"],
+  "dimensiones": {
+    "altura_cm": null,
+    "anchura_cm": null,
+    "diametro_cm": null
+  },
+  "inventario": "19000245",
+  "creditos": {
+    "texto": "Álvaro Soler del Campo",
+    "foto": null
+  }
+},
+{
+  "titulo": "Paso de Felipe III por San Sebastián",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura paisajística", "Barroco flamenco", "Escuela flamenca"],
+  "datacion": "Hacia 1615",
+  "materia": [],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 177,
+    "anchura_cm": 243,
+    "diametro_cm": null
+  },
+  "inventario": "10014291",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": null
+  }
+},
+{
+  "titulo": "Arqueta",
+  "tipo_objeto": "Arqueta",
+  "clasificacion": ["Objetos rituales y ceremoniales", "Arte indo-portugués"],
+  "datacion": "Hacia 1575",
+  "materia": ["Madera", "Nácar"],
+  "tecnica": ["Marquetería"],
+  "dimensiones": {
+    "altura_cm": 40,
+    "anchura_cm": 55,
+    "profundidad_cm": 32
+  },
+  "inventario": "00612591",
+  "creditos": {
+    "texto": "Ana García Sanz",
+    "foto": "Mario Sedeño"
+  }
+},
+{
+  "titulo": "Intercambio de Princesas entre las Cortes de España y Francia",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura", "Barroco flamenco", "Escuela flamenca"],
+  "datacion": "Hacia 1616",
+  "materia": [],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 185.6,
+    "anchura_cm": 252.5,
+    "diametro_cm": null
+  },
+  "inventario": "00621531",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": null
+  }
+},
+{
+  "titulo": "Fiesta de Nuestra Señora del Bosque",
+  "tipo_objeto": "Cuadro",
+  "clasificacion": ["Pintura costumbrista", "Barroco flamenco", "Escuela flamenca"],
+  "datacion": "1616",
+  "materia": [],
+  "tecnica": ["Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 146.2,
+    "anchura_cm": 345.7,
+    "diametro_cm": null
+  },
+  "inventario": "10069338",
+  "creditos": {
+    "texto": "Carmen García-Frías Checa",
+    "foto": "David Blázquez"
+  }
+},
+  {
+    "titulo": "Toro Farnesio",
+    "tipo_objeto": "Bulto redondo grupo",
+    "clasificacion": ["Escultura mitológica", "Escultura exenta", "Reinado de Felipe III"],
+    "datacion": "Fechado en 1617",
+    "materia": ["Bronce"],
+    "tecnica": ["Fundido", "Cincelado", "Patinado"],
+    "dimensiones": {
+      "altura_cm": 52,
+      "anchura_cm": 42.7,
+      "profundidad_cm": 43.2
+    },
+    "inventario": "10006418",
+    "creditos": {
+      "texto": "María Jesús Herrero Sanz",
+      "foto": null
+    }
+  },
+  {
+    "titulo": "Tabernáculo",
+    "tipo_objeto": "Tabernáculo",
+    "clasificacion": ["Piedras duras", "Barroco"],
+    "datacion": "1619",
+    "materia": ["Bronce", "Plata", "Piedra dura"],
+    "tecnica": ["Fundido", "Cincelado", "Dorado", "Taracea", "Pulido"],
+    "dimensiones": {
+      "altura_cm": 189,
+      "anchura_cm": 81.5,
+      "profundidad_cm": 58.3
+    },
+    "inventario": "10012087",
+    "creditos": {
+      "texto": "Mario Mateos Martín",
+      "foto": null
+    }
+  },
+  {
+  "titulo": "San José con el Niño Jesús",
+  "tipo_objeto": "Enconchado",
+  "clasificacion": ["Pintura religiosa", "Pintura de caballete", "Virreinato de Nueva España"],
+  "datacion": "1600-1700",
+  "materia": [],
+  "tecnica": ["Enconchado", "Pintura al óleo"],
+  "dimensiones": {
+    "altura_cm": 87,
+    "anchura_cm": 66,
+    "diametro_cm": null
+  },
+  "inventario": "00612502",
+  "creditos": {
+    "texto": "Ana García Sanz",
+    "foto": "Antonio Úbeda"
+  }
+},
+  {
+    "titulo": "Retrato de Margarita de Austria",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura retratística", "Barroco español", "Escuela española"],
+    "datacion": "Fechado en 1621",
+    "materia": [],
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 216.5,
+      "anchura_cm": 135,
+      "diametro_cm": null
+    },
+    "inventario": "10072953",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa",
+      "foto": null
+    }
+  },
+  {
+    "titulo": "Retrato de Felipe III armado",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura retratística", "Barroco español", "Escuela española"],
+    "datacion": "1621",
+    "materia": [],
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 216.5,
+      "anchura_cm": 135.5,
+      "diametro_cm": null
+    },
+    "inventario": "10072954",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa",
+      "foto": null
+    }
+  },
+  {
+    "titulo": "Crucifijo",
+    "tipo_objeto": "Bulto redondo",
+    "clasificacion": ["Escultura religiosa", "Escultura exenta", "Objetos rituales y ceremoniales", "Reinado de Felipe IV", "Barroco flamenco", "Escuela flamenca"],
+    "datacion": "1621-1622",
+    "materia": ["Marfil", "Ébano"],
+    "tecnica": ["Tallado", "Ensamblado"],
+    "dimensiones": {
+      "altura_cm": 130,
+      "anchura_cm": 46,
+      "profundidad_cm": 27
+    },
+    "inventario": "00622463",
+    "creditos": {
+      "texto": "Roberto Muñoz Martín",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "La victoria de la Verdad sobre la Herejía",
+    "tipo_objeto": "Tapiz",
+    "clasificacion": ["Textiles", "Barroco"],
+    "datacion": "1621-1628",
+    "materia": [],
+    "tecnica": ["Tapiz"],
+    "dimensiones": {
+      "altura_cm": 479.5,
+      "anchura_cm": 656.5,
+      "diametro_cm": null
+    },
+    "inventario": "00614221",
+    "creditos": {
+      "texto": "Ana García Sanz",
+      "foto": null
+    }
+  },
+  {
+    "titulo": "Margarita de Austria, reina de España",
+    "tipo_objeto": "Cuadro",
+    "clasificacion": ["Pintura retratística", "Barroco español", "Escuela española"],
+    "datacion": "Hacia 1621",
+    "materia": [],
+    "tecnica": ["Pintura al óleo"],
+    "dimensiones": {
+      "altura_cm": 133,
+      "anchura_cm": 102,
+      "diametro_cm": null
+    },
+    "inventario": "00621949",
+    "creditos": {
+      "texto": "Carmen García-Frías Checa",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Proclamación de Felipe IV",
+    "tipo_objeto": "Medalla",
+    "clasificacion": ["Medallística", "Barroco"],
+    "datacion": "1621-1635",
+    "materia": ["Bronce"],
+    "tecnica": ["Fundido"],
+    "dimensiones": {
+      "diametro_cm": 5.2
+    },
+    "inventario": "10234045",
+    "creditos": {
+      "texto": "Rocío Fernández-Tresguerres García",
+      "foto": "Mario Sedeño"
+    }
+  },
+  {
+    "titulo": "Felipe IV triunfante",
+    "tipo_objeto": "Medalla",
+    "clasificacion": ["Medallística", "Barroco"],
+    "datacion": "1621",
+    "materia": ["Bronce"],
+    "tecnica": ["Fundido"],
+    "dimensiones": {
+      "diametro_cm": 5.425
+    },
+    "inventario": "10243415",
+    "creditos": {
+      "texto": "Rocío Fernández-Tresguerres García",
+      "foto": "Mario Sedeño"
+    }
+  }
+]
