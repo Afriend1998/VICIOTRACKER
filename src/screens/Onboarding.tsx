@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { addVice, updateSettings } from '../lib/storage'
+import EmojiPicker from '../components/EmojiPicker'
 import type { Vice, Category } from '../types'
 
 const CATEGORIES: { value: Category; label: string; emoji: string }[] = [
@@ -45,6 +46,7 @@ export default function Onboarding({ onComplete }: Props) {
   const [vices, setVices] = useState<Vice[]>([])
   const [form, setForm] = useState<ViceForm>(emptyForm())
   const [errors, setErrors] = useState<Partial<ViceForm>>({})
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
 
   function set(key: keyof ViceForm, value: string | boolean) {
     setForm(f => ({ ...f, [key]: value }))
@@ -62,8 +64,8 @@ export default function Onboarding({ onComplete }: Props) {
 
   function validate(): boolean {
     const e: Partial<ViceForm> = {}
-    if (!form.name.trim())    e.name = 'Obligatorio'
-    if (!form.emoji.trim())   e.emoji = 'Obligatorio'
+    if (!form.name.trim())  e.name = 'Obligatorio'
+    if (!form.emoji.trim()) e.emoji = 'Elige un emoji'
     if (!form.unitPrice || isNaN(+form.unitPrice) || +form.unitPrice <= 0)
       e.unitPrice = 'Precio inválido'
     setErrors(e)
@@ -90,6 +92,7 @@ export default function Onboarding({ onComplete }: Props) {
     setVices(prev => [...prev, vice])
     setForm(emptyForm())
     setErrors({})
+    setShowEmojiPicker(false)
 
     if (vices.length + 1 >= 3) {
       finalise()
@@ -112,8 +115,12 @@ export default function Onboarding({ onComplete }: Props) {
     <div className="app-shell">
       <div className="screen-content">
         <AnimatePresence mode="wait">
+
+          {/* ── BIENVENIDA ── */}
           {step === 'welcome' && (
-            <motion.div key="welcome" {...slide} className="flex flex-col items-center justify-center min-h-screen px-8 text-center gap-6">
+            <motion.div key="welcome" {...slide}
+              className="flex flex-col items-center justify-center min-h-screen px-8 text-center gap-6"
+            >
               <div className="text-7xl mb-2">🎯</div>
               <h1 className="text-4xl font-black text-[#f0ece4]">VicioTracker</h1>
               <p className="text-[#666] text-base leading-relaxed">
@@ -133,19 +140,31 @@ export default function Onboarding({ onComplete }: Props) {
             </motion.div>
           )}
 
+          {/* ── FORMULARIO ── */}
           {step === 'form' && (
-            <motion.div key="form" {...slide} className="px-5 pt-8 pb-4 flex flex-col gap-5">
-              <div>
-                <h2 className="text-2xl font-black text-[#f0ece4]">
-                  {vices.length === 0 ? 'Tu primer vicio' : `Vicio #${vices.length + 1}`}
-                </h2>
-                <p className="text-sm text-[#555] mt-1">
-                  {vices.length > 0 && `Ya tienes: ${vices.map(v => v.emoji).join(' ')} · `}
-                  Puedes añadir hasta {3 - vices.length} más
-                </p>
+            <motion.div key="form" {...slide} className="px-5 pt-6 pb-4 flex flex-col gap-5">
+
+              {/* Cabecera con botón volver */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => { setStep('welcome'); setForm(emptyForm()); setErrors({}) }}
+                  className="text-[#555] text-sm font-medium flex items-center gap-1"
+                >
+                  ← Volver
+                </button>
+                <div className="flex-1">
+                  <h2 className="text-2xl font-black text-[#f0ece4]">
+                    {vices.length === 0 ? 'Tu primer vicio' : `Vicio #${vices.length + 1}`}
+                  </h2>
+                  {vices.length > 0 && (
+                    <p className="text-sm text-[#555]">
+                      Ya tienes: {vices.map(v => v.emoji).join(' ')} · {3 - vices.length} más disponibles
+                    </p>
+                  )}
+                </div>
               </div>
 
-              {/* Category */}
+              {/* Categoría */}
               <div>
                 <label className="label">Categoría</label>
                 <div className="flex gap-2 flex-wrap mt-2">
@@ -165,19 +184,22 @@ export default function Onboarding({ onComplete }: Props) {
                 </div>
               </div>
 
-              {/* Emoji + Name */}
+              {/* Emoji + Nombre */}
               <div className="flex gap-3">
+                {/* Emoji con picker */}
                 <div className="w-20">
                   <label className="label">Emoji</label>
-                  <input
-                    className={`input text-center text-2xl ${errors.emoji ? 'border-[#ff3b30]' : ''}`}
-                    value={form.emoji}
-                    onChange={e => set('emoji', e.target.value)}
-                    placeholder="☕"
-                    maxLength={4}
-                  />
+                  <button
+                    onClick={() => setShowEmojiPicker(v => !v)}
+                    className={`w-full h-12 rounded-xl text-2xl flex items-center justify-center border transition-colors ${
+                      errors.emoji ? 'border-[#ff3b30]' : 'border-[#222] bg-[#111]'
+                    } ${form.emoji ? '' : 'text-[#444]'}`}
+                  >
+                    {form.emoji || '＋'}
+                  </button>
                   {errors.emoji && <p className="err">{errors.emoji}</p>}
                 </div>
+
                 <div className="flex-1">
                   <label className="label">Nombre</label>
                   <input
@@ -190,37 +212,40 @@ export default function Onboarding({ onComplete }: Props) {
                 </div>
               </div>
 
-              {/* Price + Limit */}
+              {/* Picker de emojis */}
+              {showEmojiPicker && (
+                <EmojiPicker
+                  onSelect={e => set('emoji', e)}
+                  onClose={() => setShowEmojiPicker(false)}
+                />
+              )}
+
+              {/* Precio + Límite */}
               <div className="flex gap-3">
                 <div className="flex-1">
                   <label className="label">Precio por unidad (€)</label>
                   <input
                     className={`input ${errors.unitPrice ? 'border-[#ff3b30]' : ''}`}
-                    type="number"
-                    inputMode="decimal"
+                    type="number" inputMode="decimal"
                     value={form.unitPrice}
                     onChange={e => set('unitPrice', e.target.value)}
-                    placeholder="1.95"
-                    min="0"
-                    step="0.01"
+                    placeholder="1.95" min="0" step="0.01"
                   />
                   {errors.unitPrice && <p className="err">{errors.unitPrice}</p>}
                 </div>
                 <div className="flex-1">
-                  <label className="label">Límite diario (opcional)</label>
+                  <label className="label">Límite diario (aviso)</label>
                   <input
                     className="input"
-                    type="number"
-                    inputMode="numeric"
+                    type="number" inputMode="numeric"
                     value={form.dailyLimit}
                     onChange={e => set('dailyLimit', e.target.value)}
-                    placeholder="2"
-                    min="1"
+                    placeholder="2" min="1"
                   />
                 </div>
               </div>
 
-              {/* Health metrics toggle */}
+              {/* Métricas de salud */}
               <button
                 onClick={() => set('showHealth', !form.showHealth)}
                 className="text-sm text-[#00c896] font-medium text-left"
@@ -243,8 +268,7 @@ export default function Onboarding({ onComplete }: Props) {
                       <label className="label">{f.label}</label>
                       <input
                         className="input"
-                        type="number"
-                        inputMode="decimal"
+                        type="number" inputMode="decimal"
                         value={form[f.key as keyof ViceForm] as string}
                         onChange={e => set(f.key as keyof ViceForm, e.target.value)}
                         placeholder={f.ph}
@@ -254,13 +278,13 @@ export default function Onboarding({ onComplete }: Props) {
                 </motion.div>
               )}
 
-              {/* Actions */}
+              {/* Acciones */}
               <div className="flex flex-col gap-3 pt-2">
                 <button
                   onClick={saveVice}
                   className="w-full py-4 rounded-2xl bg-[#00c896] text-black font-bold text-base"
                 >
-                  {vices.length < 2 ? 'Guardar y añadir otro +'  : 'Guardar →'}
+                  {vices.length < 2 ? 'Guardar y añadir otro +' : 'Guardar →'}
                 </button>
                 {vices.length > 0 && (
                   <button
@@ -274,8 +298,11 @@ export default function Onboarding({ onComplete }: Props) {
             </motion.div>
           )}
 
+          {/* ── DONE ── */}
           {step === 'done' && (
-            <motion.div key="done" {...slide} className="flex flex-col items-center justify-center min-h-screen px-8 text-center gap-6">
+            <motion.div key="done" {...slide}
+              className="flex flex-col items-center justify-center min-h-screen px-8 text-center gap-6"
+            >
               <div className="text-7xl">🎉</div>
               <h2 className="text-3xl font-black text-[#f0ece4]">¡Todo listo!</h2>
               <div className="flex gap-3 flex-wrap justify-center">
@@ -296,6 +323,7 @@ export default function Onboarding({ onComplete }: Props) {
               </button>
             </motion.div>
           )}
+
         </AnimatePresence>
       </div>
 

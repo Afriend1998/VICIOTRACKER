@@ -16,8 +16,7 @@ export default function ViceButton({ vice, dailyCount, totalTaps, onTap }: Props
   const progress = vice.dailyLimit ? Math.min(dailyCount / vice.dailyLimit, 1) : null
 
   function handleTap() {
-    if (atLimit) return
-    if (navigator.vibrate) navigator.vibrate(40)
+    if (navigator.vibrate) navigator.vibrate(atLimit ? [30, 50, 30] : 40)
     setTapping(true)
     setTimeout(() => setTapping(false), 200)
     onTap()
@@ -43,8 +42,8 @@ export default function ViceButton({ vice, dailyCount, totalTaps, onTap }: Props
         className={`
           w-40 h-40 rounded-full text-7xl
           flex items-center justify-center select-none
-          bg-[#1a1a1a] border border-[#2a2a2a]
-          ${atLimit ? 'pulse-danger opacity-60 cursor-not-allowed' : 'active:bg-[#222]'}
+          bg-[#1a1a1a] border border-[#2a2a2a] active:bg-[#222]
+          ${atLimit ? 'pulse-danger' : ''}
           transition-opacity
         `}
         aria-label={`Registrar ${vice.name}`}
@@ -69,7 +68,7 @@ export default function ViceButton({ vice, dailyCount, totalTaps, onTap }: Props
       )}
 
       {atLimit && (
-        <p className="text-xs text-[#ff3b30] font-medium">Límite diario alcanzado</p>
+        <p className="text-xs text-[#ff3b30] font-medium">⚠ Límite superado · sigue registrando</p>
       )}
     </div>
   )

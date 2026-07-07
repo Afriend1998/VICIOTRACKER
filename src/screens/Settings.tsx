@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout'
+import EmojiPicker from '../components/EmojiPicker'
 import { getData, updateSettings, resetData, exportJSON, addVice, removeVice } from '../lib/storage'
 import type { Vice, Category } from '../types'
 
@@ -38,6 +39,7 @@ export default function Settings() {
   const navigate = useNavigate()
   const [tick, setTick] = useState(0)
   const [showAddForm, setShowAddForm] = useState(false)
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '' })
   const [confirmReset, setConfirmReset] = useState(false)
 
@@ -104,13 +106,12 @@ export default function Settings() {
           {showAddForm && (
             <div className="mt-3 bg-[#111] border border-[#222] rounded-2xl p-4 flex flex-col gap-3">
               <div className="flex gap-2">
-                <input
-                  className="w-16 bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-center text-xl"
-                  value={newVice.emoji}
-                  onChange={e => setNewVice(f => ({ ...f, emoji: e.target.value }))}
-                  placeholder="☕"
-                  maxLength={4}
-                />
+                <button
+                  onClick={() => setShowEmojiPicker(v => !v)}
+                  className="w-14 h-11 rounded-xl text-2xl flex items-center justify-center border border-[#333] bg-[#1a1a1a]"
+                >
+                  {newVice.emoji || '＋'}
+                </button>
                 <input
                   className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-sm"
                   value={newVice.name}
@@ -118,6 +119,12 @@ export default function Settings() {
                   placeholder="Nombre"
                 />
               </div>
+              {showEmojiPicker && (
+                <EmojiPicker
+                  onSelect={e => { setNewVice(f => ({ ...f, emoji: e })); setShowEmojiPicker(false) }}
+                  onClose={() => setShowEmojiPicker(false)}
+                />
+              )}
               <div className="flex gap-2">
                 <input
                   className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-sm"
