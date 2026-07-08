@@ -68,25 +68,44 @@ export default function Home() {
         </div>
 
         {/* Vice buttons */}
-        <div className={`
-          grid gap-8 py-4
-          ${vices.length === 1 ? 'grid-cols-1 place-items-center' :
-            vices.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}
-        `}>
-          {vices.map(vice => {
-            const dailyCount = getDailyTaps(taps, vice.id)
-            const totalViceTaps = taps.filter(t => t.viceId === vice.id).length
-            return (
-              <ViceButton
-                key={`${vice.id}-${tick}`}
-                vice={vice}
-                dailyCount={dailyCount}
-                totalTaps={totalViceTaps}
-                onTap={() => handleTap(vice.id, vice.unitPrice)}
-              />
-            )
-          })}
-        </div>
+        {(() => {
+          const showAdd = vices.length < 3
+          const total = vices.length + (showAdd ? 1 : 0)
+          const cols = total === 1 ? 'grid-cols-1 place-items-center'
+                     : total === 2 ? 'grid-cols-2'
+                     : 'grid-cols-3'
+          return (
+            <div className={`grid gap-8 py-4 ${cols}`}>
+              {vices.map(vice => {
+                const dailyCount = getDailyTaps(taps, vice.id)
+                const totalViceTaps = taps.filter(t => t.viceId === vice.id).length
+                return (
+                  <ViceButton
+                    key={`${vice.id}-${tick}`}
+                    vice={vice}
+                    dailyCount={dailyCount}
+                    totalTaps={totalViceTaps}
+                    onTap={() => handleTap(vice.id, vice.unitPrice)}
+                  />
+                )
+              })}
+
+              {showAdd && (
+                <div className="flex flex-col items-center gap-3">
+                  <div className="h-[60px]" />
+                  <button
+                    onClick={() => navigate('/settings', { state: { openAdd: true } })}
+                    className="w-40 h-40 rounded-full border-2 border-dashed border-[#2a2a2a] flex flex-col items-center justify-center gap-1 text-[#444] hover:border-[#00c896] hover:text-[#00c896] transition-colors group"
+                    aria-label="Añadir vicio"
+                  >
+                    <span className="text-4xl leading-none group-hover:scale-110 transition-transform">+</span>
+                  </button>
+                  <p className="text-sm font-semibold text-[#444] tracking-wide uppercase">Añadir</p>
+                </div>
+              )}
+            </div>
+          )
+        })()}
 
         {/* Quick stats row */}
         <div className="grid grid-cols-3 gap-2 mt-6">

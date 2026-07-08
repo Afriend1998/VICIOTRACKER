@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Layout from '../components/Layout'
 import EmojiPicker from '../components/EmojiPicker'
 import { getData, updateSettings, resetData, exportJSON, addVice, removeVice } from '../lib/storage'
@@ -37,8 +37,9 @@ function ViceRow({ vice, onDelete }: { vice: Vice; onDelete: () => void }) {
 
 export default function Settings() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [tick, setTick] = useState(0)
-  const [showAddForm, setShowAddForm] = useState(false)
+  const [showAddForm, setShowAddForm] = useState((location.state as { openAdd?: boolean } | null)?.openAdd === true)
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '' })
   const [confirmReset, setConfirmReset] = useState(false)
