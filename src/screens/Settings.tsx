@@ -14,6 +14,7 @@ const CATEGORIES: { value: Category; label: string }[] = [
 ]
 
 function ViceRow({ vice, onDelete }: { vice: Vice; onDelete: () => void }) {
+  const [confirming, setConfirming] = useState(false)
   return (
     <div className="flex items-center gap-3 bg-[#111] border border-[#222] rounded-xl p-3">
       <span className="text-2xl">{vice.emoji}</span>
@@ -24,13 +25,30 @@ function ViceRow({ vice, onDelete }: { vice: Vice; onDelete: () => void }) {
           {vice.dailyLimit ? ` · límite ${vice.dailyLimit}/día` : ''}
         </p>
       </div>
-      <button
-        onClick={onDelete}
-        className="text-[#ff3b30] text-sm font-medium px-2 py-1"
-        aria-label="Eliminar vicio"
-      >
-        ✕
-      </button>
+      {confirming ? (
+        <div className="flex gap-1 shrink-0">
+          <button
+            onClick={onDelete}
+            className="text-xs font-bold px-2 py-1 rounded-lg bg-[#ff3b30] text-white"
+          >
+            Borrar
+          </button>
+          <button
+            onClick={() => setConfirming(false)}
+            className="text-xs px-2 py-1 rounded-lg border border-[#333] text-[#555]"
+          >
+            No
+          </button>
+        </div>
+      ) : (
+        <button
+          onClick={() => setConfirming(true)}
+          className="text-[#444] hover:text-[#ff3b30] text-sm font-medium px-2 py-1 transition-colors shrink-0"
+          aria-label="Eliminar vicio"
+        >
+          ✕
+        </button>
+      )}
     </div>
   )
 }
@@ -105,53 +123,81 @@ export default function Settings() {
             </button>
           )}
           {showAddForm && (
-            <div className="mt-3 bg-[#111] border border-[#222] rounded-2xl p-4 flex flex-col gap-3">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setShowEmojiPicker(v => !v)}
-                  className="w-14 h-11 rounded-xl text-2xl flex items-center justify-center border border-[#333] bg-[#1a1a1a]"
+            <div className="mt-3 bg-[#111] border border-[#222] rounded-2xl p-4 flex flex-col gap-4">
+
+              {/* Emoji + Nombre */}
+              <div>
+                <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Nombre y emoji</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowEmojiPicker(v => !v)}
+                    className="w-14 h-12 rounded-xl text-2xl flex items-center justify-center border border-[#333] bg-[#1a1a1a] shrink-0"
+                  >
+                    {newVice.emoji || '＋'}
+                  </button>
+                  <input
+                    className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm"
+                    value={newVice.name}
+                    onChange={e => setNewVice(f => ({ ...f, name: e.target.value }))}
+                    placeholder="Ej: Monster, Café..."
+                  />
+                </div>
+                {showEmojiPicker && (
+                  <div className="mt-2">
+                    <EmojiPicker
+                      onSelect={e => { setNewVice(f => ({ ...f, emoji: e })); setShowEmojiPicker(false) }}
+                      onClose={() => setShowEmojiPicker(false)}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Precio + Límite */}
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Precio por unidad</p>
+                  <div className="relative">
+                    <input
+                      className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-8"
+                      type="number" inputMode="decimal"
+                      value={newVice.unitPrice}
+                      onChange={e => setNewVice(f => ({ ...f, unitPrice: e.target.value }))}
+                      placeholder="1.95"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">€</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Aviso diario</p>
+                  <div className="relative">
+                    <input
+                      className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10"
+                      type="number" inputMode="numeric"
+                      value={newVice.dailyLimit}
+                      onChange={e => setNewVice(f => ({ ...f, dailyLimit: e.target.value }))}
+                      placeholder="2"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">/día</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Categoría */}
+              <div>
+                <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Categoría</p>
+                <select
+                  className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm"
+                  value={newVice.category}
+                  onChange={e => setNewVice(f => ({ ...f, category: e.target.value as Category }))}
                 >
-                  {newVice.emoji || '＋'}
-                </button>
-                <input
-                  className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-sm"
-                  value={newVice.name}
-                  onChange={e => setNewVice(f => ({ ...f, name: e.target.value }))}
-                  placeholder="Nombre"
-                />
+                  {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+                </select>
               </div>
-              {showEmojiPicker && (
-                <EmojiPicker
-                  onSelect={e => { setNewVice(f => ({ ...f, emoji: e })); setShowEmojiPicker(false) }}
-                  onClose={() => setShowEmojiPicker(false)}
-                />
-              )}
-              <div className="flex gap-2">
-                <input
-                  className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-sm"
-                  type="number" inputMode="decimal"
-                  value={newVice.unitPrice}
-                  onChange={e => setNewVice(f => ({ ...f, unitPrice: e.target.value }))}
-                  placeholder="Precio €"
-                />
-                <input
-                  className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-sm"
-                  type="number" inputMode="numeric"
-                  value={newVice.dailyLimit}
-                  onChange={e => setNewVice(f => ({ ...f, dailyLimit: e.target.value }))}
-                  placeholder="Límite/día"
-                />
-              </div>
-              <select
-                className="bg-[#1a1a1a] border border-[#333] rounded-xl p-2 text-[#f0ece4] text-sm"
-                value={newVice.category}
-                onChange={e => setNewVice(f => ({ ...f, category: e.target.value as Category }))}
-              >
-                {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
-              </select>
-              <div className="flex gap-2">
-                <button onClick={handleAddVice} className="flex-1 py-2 rounded-xl bg-[#00c896] text-black font-bold text-sm">Añadir</button>
-                <button onClick={() => setShowAddForm(false)} className="flex-1 py-2 rounded-xl border border-[#333] text-[#555] text-sm">Cancelar</button>
+
+              {/* Botones */}
+              <div className="flex gap-2 pt-1">
+                <button onClick={handleAddVice} className="flex-1 py-3 rounded-xl bg-[#00c896] text-black font-bold text-sm">Añadir</button>
+                <button onClick={() => setShowAddForm(false)} className="flex-1 py-3 rounded-xl border border-[#333] text-[#555] text-sm">Cancelar</button>
               </div>
             </div>
           )}
