@@ -159,7 +159,7 @@ export default function Home() {
 
       {/* Toast deshacer */}
       {undo && (
-        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[390px]">
+        <div className="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[390px]">
           <div className="flex items-center justify-between bg-[#1a1a1a] border border-[#333] rounded-2xl px-4 py-3 shadow-xl">
             <p className="text-sm text-[#f0ece4]">
               {undo.emoji} <span className="font-semibold">{undo.name}</span> registrado
