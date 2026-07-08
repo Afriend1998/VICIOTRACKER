@@ -1,9 +1,9 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import confetti from 'canvas-confetti'
 import Layout from '../components/Layout'
 import ViceButton from '../components/ViceButton'
-import { getData, addTap } from '../lib/storage'
+import { getData, addTap, removeLastTap } from '../lib/storage'
 import { getDailyTaps, getTotalSpent } from '../lib/finance'
 import type { Tap } from '../types'
 
@@ -12,13 +12,15 @@ const TAP_MILESTONES = [10, 25, 50, 100, 250, 500]
 export default function Home() {
   const navigate = useNavigate()
   const [tick, setTick] = useState(0)
+  const [undo, setUndo] = useState<{ viceId: string; name: string; emoji: string } | null>(null)
+  const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const data = getData()
   const { vices, taps, settings } = data
 
   const totalToday = getTotalSpent(taps, 'today')
 
-  const handleTap = useCallback((viceId: string, unitPrice: number) => {
+  const handleTap = useCallback((viceId: string, unitPrice: number, viceName: string, viceEmoji: string) => {
     const tap: Tap = { viceId, timestamp: new Date().toISOString(), priceAtTap: unitPrice }
     addTap(tap)
 
@@ -28,8 +30,21 @@ export default function Home() {
       confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } })
     }
 
+    // Mostrar toast de deshacer 3 segundos
+    if (undoTimer.current) clearTimeout(undoTimer.current)
+    setUndo({ viceId, name: viceName, emoji: viceEmoji })
+    undoTimer.current = setTimeout(() => setUndo(null), 3000)
+
     setTick(t => t + 1)
   }, [taps])
+
+  function handleUndo() {
+    if (!undo) return
+    if (undoTimer.current) clearTimeout(undoTimer.current)
+    removeLastTap(undo.viceId)
+    setUndo(null)
+    setTick(t => t + 1)
+  }
 
   if (vices.length === 0) {
     return (
@@ -98,7 +113,7 @@ export default function Home() {
                     vice={vice}
                     dailyCount={dailyCount}
                     totalTaps={totalViceTaps}
-                    onTap={() => handleTap(vice.id, vice.unitPrice)}
+                    onTap={() => handleTap(vice.id, vice.unitPrice, vice.name, vice.emoji)}
                     size={size}
                   />
                 )
@@ -141,6 +156,23 @@ export default function Home() {
           Toca cada vez que consumas
         </p>
       </div>
+
+      {/* Toast deshacer */}
+      {undo && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[390px]">
+          <div className="flex items-center justify-between bg-[#1a1a1a] border border-[#333] rounded-2xl px-4 py-3 shadow-xl">
+            <p className="text-sm text-[#f0ece4]">
+              {undo.emoji} <span className="font-semibold">{undo.name}</span> registrado
+            </p>
+            <button
+              onClick={handleUndo}
+              className="text-sm font-bold text-[#00c896] ml-4 shrink-0"
+            >
+              ↩ Deshacer
+            </button>
+          </div>
+        </div>
+      )}
     </Layout>
   )
 }
