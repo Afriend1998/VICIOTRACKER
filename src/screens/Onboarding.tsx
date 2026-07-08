@@ -94,7 +94,7 @@ export default function Onboarding({ onComplete }: Props) {
     setErrors({})
     setShowEmojiPicker(false)
 
-    if (vices.length + 1 >= 3) {
+    if (vices.length + 1 >= 5) {
       finalise()
     }
   }
@@ -127,7 +127,7 @@ export default function Onboarding({ onComplete }: Props) {
                 Registra tus hábitos de consumo y descubre cuánto valen si los inviertes en lugar de gastarlos.
               </p>
               <div className="flex flex-col gap-2 text-sm text-[#555] text-left w-full max-w-xs">
-                <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> Hasta 3 vicios en el tier gratuito</div>
+                <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> Hasta 5 vicios en el tier gratuito</div>
                 <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> 100% offline · sin cuenta</div>
                 <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> Simulación de inversión real</div>
               </div>
@@ -158,7 +158,7 @@ export default function Onboarding({ onComplete }: Props) {
                   </h2>
                   {vices.length > 0 && (
                     <p className="text-sm text-[#555]">
-                      Ya tienes: {vices.map(v => v.emoji).join(' ')} · {3 - vices.length} más disponibles
+                      Ya tienes: {vices.map(v => v.emoji).join(' ')} · {5 - vices.length} más disponibles
                     </p>
                   )}
                 </div>
@@ -284,7 +284,7 @@ export default function Onboarding({ onComplete }: Props) {
                   onClick={saveVice}
                   className="w-full py-4 rounded-2xl bg-[#00c896] text-black font-bold text-base"
                 >
-                  {vices.length < 2 ? 'Guardar y añadir otro +' : 'Guardar →'}
+                  {vices.length < 4 ? 'Guardar y añadir otro +' : 'Guardar →'}
                 </button>
                 {vices.length > 0 && (
                   <button

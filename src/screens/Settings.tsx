@@ -85,7 +85,7 @@ export default function Settings() {
         {/* Vices */}
         <section className="mb-6">
           <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">
-            Mis vicios ({vices.length}/3)
+            Mis vicios ({vices.length}/5)
           </p>
           <div className="flex flex-col gap-2">
             {vices.map(v => (
@@ -96,7 +96,7 @@ export default function Settings() {
               />
             ))}
           </div>
-          {vices.length < 3 && !showAddForm && (
+          {vices.length < 5 && !showAddForm && (
             <button
               onClick={() => setShowAddForm(true)}
               className="mt-3 w-full py-3 rounded-xl border border-dashed border-[#333] text-[#555] text-sm"

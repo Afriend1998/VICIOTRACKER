@@ -69,13 +69,26 @@ export default function Home() {
 
         {/* Vice buttons */}
         {(() => {
-          const showAdd = vices.length < 3
+          const showAdd = vices.length < 5
           const total = vices.length + (showAdd ? 1 : 0)
-          const cols = total === 1 ? 'grid-cols-1 place-items-center'
-                     : total === 2 ? 'grid-cols-2'
-                     : 'grid-cols-3'
+
+          type Size = 'large' | 'medium' | 'small'
+          let cols: string, size: Size, gap: string
+          if (total <= 2) {
+            cols = total === 1 ? 'grid-cols-1 place-items-center' : 'grid-cols-2'
+            size = 'large'; gap = 'gap-8'
+          } else if (total <= 4) {
+            cols = 'grid-cols-2'; size = 'medium'; gap = 'gap-4'
+          } else {
+            cols = 'grid-cols-3'; size = 'small'; gap = 'gap-3'
+          }
+
+          const btnSize = { large: 'w-40 h-40', medium: 'w-32 h-32', small: 'w-24 h-24' }[size]
+          const plusSize = { large: 'text-4xl', medium: 'text-3xl', small: 'text-2xl' }[size]
+          const spacer  = { large: 'h-[60px]', medium: 'h-[52px]', small: 'h-[42px]' }[size]
+
           return (
-            <div className={`grid gap-8 py-4 ${cols}`}>
+            <div className={`grid py-4 ${cols} ${gap}`}>
               {vices.map(vice => {
                 const dailyCount = getDailyTaps(taps, vice.id)
                 const totalViceTaps = taps.filter(t => t.viceId === vice.id).length
@@ -86,21 +99,22 @@ export default function Home() {
                     dailyCount={dailyCount}
                     totalTaps={totalViceTaps}
                     onTap={() => handleTap(vice.id, vice.unitPrice)}
+                    size={size}
                   />
                 )
               })}
 
               {showAdd && (
-                <div className="flex flex-col items-center gap-3">
-                  <div className="h-[60px]" />
+                <div className="flex flex-col items-center gap-2">
+                  <div className={spacer} />
                   <button
                     onClick={() => navigate('/settings', { state: { openAdd: true } })}
-                    className="w-40 h-40 rounded-full border-2 border-dashed border-[#2a2a2a] flex flex-col items-center justify-center gap-1 text-[#444] hover:border-[#00c896] hover:text-[#00c896] transition-colors group"
+                    className={`${btnSize} rounded-full border-2 border-dashed border-[#2a2a2a] flex flex-col items-center justify-center text-[#444] hover:border-[#00c896] hover:text-[#00c896] transition-colors group`}
                     aria-label="Añadir vicio"
                   >
-                    <span className="text-4xl leading-none group-hover:scale-110 transition-transform">+</span>
+                    <span className={`${plusSize} leading-none group-hover:scale-110 transition-transform`}>+</span>
                   </button>
-                  <p className="text-sm font-semibold text-[#444] tracking-wide uppercase">Añadir</p>
+                  <p className="text-xs font-semibold text-[#444] tracking-wide uppercase">Añadir</p>
                 </div>
               )}
             </div>
