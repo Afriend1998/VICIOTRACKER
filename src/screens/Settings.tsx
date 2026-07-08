@@ -43,7 +43,7 @@ function ViceRow({ vice, onDelete }: { vice: Vice; onDelete: () => void }) {
       ) : (
         <button
           onClick={() => setConfirming(true)}
-          className="text-[#444] hover:text-[#ff3b30] text-sm font-medium px-2 py-1 transition-colors shrink-0"
+          className="text-[#ff3b30] text-sm font-medium px-2 py-1 shrink-0"
           aria-label="Eliminar vicio"
         >
           ✕
