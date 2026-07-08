@@ -124,7 +124,7 @@ export default function Home() {
         </div>
 
         <p className="text-center text-xs text-[#333] mt-6">
-          Toca el botón cada vez que consumas
+          Toca cada vez que consumas
         </p>
       </div>
     </Layout>
