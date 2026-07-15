@@ -1,10 +1,12 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import confetti from 'canvas-confetti'
 import Layout from '../components/Layout'
 import ViceButton from '../components/ViceButton'
-import { getData, addTap, removeLastTap } from '../lib/storage'
+import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement } from '../lib/storage'
 import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
+import { getStreak } from '../lib/streaks'
+import { checkAndUnlock } from '../lib/achievements'
 import type { Tap } from '../types'
 
 const TAP_MILESTONES = [10, 25, 50, 100, 250, 500]
@@ -27,6 +29,21 @@ export default function Home() {
   const projected20y = calculateFV(investSuggest, 0.08, 240)
   const cur = settings.currency === 'EUR' ? '€' : '$'
 
+  useEffect(() => {
+    const current = getData()
+    const newOnes = checkAndUnlock(current)
+    newOnes.forEach(id => unlockAchievement(id))
+    // evaluate active challenges
+    current.challenges.filter(c => c.status === 'active').forEach(c => {
+      const failed = current.taps.some(t => t.viceId === c.viceId && new Date(t.timestamp) >= new Date(c.startDate))
+      if (failed) { updateChallenge(c.id, { status: 'lost' }) }
+      else {
+        const end = new Date(c.startDate); end.setDate(end.getDate() + c.daysTarget)
+        if (new Date() >= end) { updateChallenge(c.id, { status: 'won' }); unlockAchievement('challenge-won') }
+      }
+    })
+  }, [tick])
+
   const handleTap = useCallback((viceId: string, unitPrice: number, viceName: string, viceEmoji: string) => {
     const tap: Tap = { viceId, timestamp: new Date().toISOString(), priceAtTap: unitPrice }
     addTap(tap)
@@ -37,7 +54,6 @@ export default function Home() {
       confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } })
     }
 
-    // Mostrar toast de deshacer 3 segundos
     if (undoTimer.current) clearTimeout(undoTimer.current)
     setUndo({ viceId, name: viceName, emoji: viceEmoji })
     undoTimer.current = setTimeout(() => setUndo(null), 10000)
@@ -113,15 +129,20 @@ export default function Home() {
               {vices.map(vice => {
                 const dailyCount = getDailyTaps(taps, vice.id)
                 const totalViceTaps = taps.filter(t => t.viceId === vice.id).length
+                const streak = getStreak(vice, taps)
                 return (
-                  <ViceButton
-                    key={`${vice.id}-${tick}`}
-                    vice={vice}
-                    dailyCount={dailyCount}
-                    totalTaps={totalViceTaps}
-                    onTap={() => handleTap(vice.id, vice.unitPrice, vice.name, vice.emoji)}
-                    size={size}
-                  />
+                  <div key={`${vice.id}-${tick}`} className="flex flex-col items-center">
+                    <ViceButton
+                      vice={vice}
+                      dailyCount={dailyCount}
+                      totalTaps={totalViceTaps}
+                      onTap={() => handleTap(vice.id, vice.unitPrice, vice.name, vice.emoji)}
+                      size={size}
+                    />
+                    {streak >= 2 && vice.dailyLimit && (
+                      <p className="text-[10px] text-[#00c896] font-bold mt-1">🔥 {streak}d</p>
+                    )}
+                  </div>
                 )
               })}
 

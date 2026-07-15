@@ -6,6 +6,7 @@ import Impact from './screens/Impact'
 import History from './screens/History'
 import Quick from './screens/Quick'
 import Health from './screens/Health'
+import Challenges from './screens/Challenges'
 import Settings from './screens/Settings'
 import { hasCompletedOnboarding } from './lib/storage'
 
@@ -17,6 +18,7 @@ function MainApp() {
       <Route path="/impact" element={<Impact />} />
       <Route path="/history" element={<History />} />
       <Route path="/health" element={<Health />} />
+      <Route path="/challenges" element={<Challenges />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>

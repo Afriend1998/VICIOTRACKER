@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
 
 const NAV = [
-  { path: '/home',     icon: '🏠', label: 'Hoy' },
-  { path: '/impact',   icon: '💸', label: 'Impacto' },
-  { path: '/history',  icon: '📋', label: 'Historial' },
-  { path: '/health',   icon: '❤️', label: 'Salud' },
-  { path: '/settings', icon: '⚙️', label: 'Config' },
+  { path: '/home',       icon: '🏠', label: 'Hoy' },
+  { path: '/impact',     icon: '💸', label: 'Impacto' },
+  { path: '/history',    icon: '📋', label: 'Historial' },
+  { path: '/challenges', icon: '⚔️', label: 'Retos' },
+  { path: '/settings',   icon: '⚙️', label: 'Config' },
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {

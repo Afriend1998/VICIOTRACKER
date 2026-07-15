@@ -1,4 +1,4 @@
-import type { AppData, Vice, Tap, Settings } from '../types'
+import type { AppData, Vice, Tap, Settings, Challenge } from '../types'
 
 const KEY = 'vicio-tracker-v0.1'
 
@@ -12,6 +12,8 @@ function defaultData(): AppData {
       annualReturn: 0.08,
       startDate: new Date().toISOString(),
     },
+    challenges: [],
+    unlockedAchievements: [],
   }
 }
 
@@ -19,7 +21,10 @@ export function getData(): AppData {
   try {
     const raw = localStorage.getItem(KEY)
     if (!raw) return defaultData()
-    return JSON.parse(raw) as AppData
+    const data = JSON.parse(raw) as AppData
+    if (!data.challenges) data.challenges = []
+    if (!data.unlockedAchievements) data.unlockedAchievements = []
+    return data
   } catch {
     return defaultData()
   }
@@ -85,6 +90,29 @@ export function exportJSON(): void {
   a.download = `vicio-tracker-${new Date().toISOString().split('T')[0]}.json`
   a.click()
   URL.revokeObjectURL(url)
+}
+
+export function addChallenge(challenge: Challenge): void {
+  const data = getData()
+  data.challenges.push(challenge)
+  saveData(data)
+}
+
+export function updateChallenge(id: string, partial: Partial<Challenge>): void {
+  const data = getData()
+  const idx = data.challenges.findIndex(c => c.id === id)
+  if (idx !== -1) {
+    data.challenges[idx] = { ...data.challenges[idx], ...partial }
+    saveData(data)
+  }
+}
+
+export function unlockAchievement(id: string): void {
+  const data = getData()
+  if (!data.unlockedAchievements.includes(id)) {
+    data.unlockedAchievements.push(id)
+    saveData(data)
+  }
 }
 
 export function hasCompletedOnboarding(): boolean {

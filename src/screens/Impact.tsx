@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
   BarChart, Bar, Cell
@@ -37,10 +37,32 @@ export default function Impact() {
   const dayData = getSpendByDayOfWeek(taps)
   const maxDay = Math.max(...dayData.map(d => d.amount), 0.01)
 
+  const thisWeek = getTotalSpent(taps, 'week')
+  const prevWeekEnd = new Date(); prevWeekEnd.setDate(prevWeekEnd.getDate() - 7)
+  const prevWeekStart = new Date(prevWeekEnd); prevWeekStart.setDate(prevWeekEnd.getDate() - 7)
+  const prevWeek = taps
+    .filter(t => { const d = new Date(t.timestamp); return d >= prevWeekStart && d < prevWeekEnd })
+    .reduce((s, t) => s + t.priceAtTap, 0)
+  const weekDiff = prevWeek > 0 ? ((thisWeek - prevWeek) / prevWeek) * 100 : 0
+
+  const handleShare = useCallback(() => {
+    const text = `📊 VicioTracker\n\nEste mes gasté ${cur}${monthly.toFixed(0)} en vicios.\nSi lo invirtiera, en 20 años tendría ${cur}${(projections.medium.y20 / 1000).toFixed(1)}k 🤯\n\nhttps://viciotracker.vercel.app`
+    if (navigator.share) {
+      navigator.share({ title: 'VicioTracker', text })
+    } else {
+      navigator.clipboard.writeText(text)
+    }
+  }, [monthly, projections, cur])
+
   return (
     <Layout>
       <div className="px-5 pt-6 pb-4">
-        <h1 className="text-2xl font-black text-[#f0ece4] mb-1">Impacto financiero</h1>
+        <div className="flex items-start justify-between mb-1">
+          <h1 className="text-2xl font-black text-[#f0ece4]">Impacto financiero</h1>
+          <button onClick={handleShare} className="text-xs text-[#00c896] font-bold border border-[#00c896]/40 rounded-full px-3 py-1">
+            Compartir
+          </button>
+        </div>
         <p className="text-xs text-[#555] mb-5">Gasto real vs inversión alternativa</p>
 
         {/* Period selector */}
@@ -76,6 +98,21 @@ export default function Impact() {
             subtitle="Base para las proyecciones de inversión"
           />
         </div>
+
+        {/* Week comparison */}
+        {prevWeek > 0 && (
+          <div className="mt-3 bg-[#111] border border-[#222] rounded-2xl p-4 flex items-center justify-between">
+            <div>
+              <p className="text-xs text-[#555] mb-1">Esta semana vs anterior</p>
+              <p className="text-lg font-black text-[#f0ece4]">{cur}{thisWeek.toFixed(2)}</p>
+              <p className="text-xs text-[#555]">Anterior: {cur}{prevWeek.toFixed(2)}</p>
+            </div>
+            <div className={`text-right font-black text-xl ${weekDiff <= 0 ? 'text-[#00c896]' : 'text-[#ff3b30]'}`}>
+              {weekDiff > 0 ? '+' : ''}{weekDiff.toFixed(0)}%
+              <p className="text-xs font-normal text-[#555]">{weekDiff <= 0 ? '↓ Mejor' : '↑ Peor'}</p>
+            </div>
+          </div>
+        )}
 
         {/* Chart */}
         {chartData.length > 1 && (

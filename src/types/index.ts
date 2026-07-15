@@ -31,11 +31,23 @@ export interface Settings {
   investmentThreshold?: number
 }
 
+export interface Challenge {
+  id: string
+  viceId: string
+  description: string
+  daysTarget: number
+  startDate: string
+  penalty: number
+  status: 'active' | 'won' | 'lost'
+}
+
 export interface AppData {
   version: string
   vices: Vice[]
   taps: Tap[]
   settings: Settings
+  challenges: Challenge[]
+  unlockedAchievements: string[]
 }
 
 export type Period = 'today' | 'week' | 'month' | 'year' | 'all'
