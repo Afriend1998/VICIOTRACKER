@@ -12,15 +12,28 @@ export default defineConfig({
       manifest: {
         name: 'VicioTracker',
         short_name: 'VicioTracker',
-        description: 'Trackea tus vicios y calcula su coste de oportunidad',
+        description: 'Trackea tus vicios y calcula su coste de oportunidad financiero',
         theme_color: '#0a0a0a',
         background_color: '#0a0a0a',
         display: 'standalone',
         orientation: 'portrait',
         start_url: '/',
+        id: '/',
+        lang: 'es',
+        categories: ['lifestyle', 'finance', 'health'],
         icons: [
-          { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },
-          { src: 'pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+          { src: 'pwa-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+        screenshots: [
+          {
+            src: 'pwa-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            form_factor: 'narrow',
+            label: 'Pantalla principal de VicioTracker',
+          },
         ],
         shortcuts: [
           {
