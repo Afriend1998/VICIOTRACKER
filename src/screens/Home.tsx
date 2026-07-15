@@ -172,6 +172,14 @@ export default function Home() {
                   Gastas {cur}{monthly.toFixed(0)}/mes en vicios. Si invirtieras el 50% ({cur}{investSuggest.toFixed(0)}/mes), en 20 años tendrías{' '}
                   <span className="text-[#00c896] font-bold">{cur}{(projected20y / 1000).toFixed(1)}k</span>.
                 </p>
+                <a
+                  href="https://afriend1998.github.io/break_even/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2 text-xs font-bold text-[#00c896] underline underline-offset-2"
+                >
+                  ¿Dónde invertir? →
+                </a>
               </div>
               <button onClick={() => setAlertDismissed(true)} className="text-[#444] text-xs shrink-0 mt-0.5">✕</button>
             </div>
