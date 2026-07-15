@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Onboarding from './screens/Onboarding'
 import Home from './screens/Home'
 import Impact from './screens/Impact'
+import History from './screens/History'
 import Health from './screens/Health'
 import Settings from './screens/Settings'
 import { hasCompletedOnboarding } from './lib/storage'
@@ -12,6 +13,7 @@ function MainApp() {
     <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/impact" element={<Impact />} />
+      <Route path="/history" element={<History />} />
       <Route path="/health" element={<Health />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="*" element={<Navigate to="/home" replace />} />

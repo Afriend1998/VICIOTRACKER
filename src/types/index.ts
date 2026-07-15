@@ -27,6 +27,7 @@ export interface Settings {
   currency: string
   annualReturn: number
   startDate: string
+  notificationsEnabled?: boolean
 }
 
 export interface AppData {

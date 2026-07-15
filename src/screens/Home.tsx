@@ -33,7 +33,7 @@ export default function Home() {
     // Mostrar toast de deshacer 3 segundos
     if (undoTimer.current) clearTimeout(undoTimer.current)
     setUndo({ viceId, name: viceName, emoji: viceEmoji })
-    undoTimer.current = setTimeout(() => setUndo(null), 3000)
+    undoTimer.current = setTimeout(() => setUndo(null), 10000)
 
     setTick(t => t + 1)
   }, [taps])

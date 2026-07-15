@@ -48,6 +48,15 @@ export function addTap(tap: Tap): void {
   saveData(data)
 }
 
+export function updateVice(viceId: string, partial: Partial<Vice>): void {
+  const data = getData()
+  const idx = data.vices.findIndex(v => v.id === viceId)
+  if (idx !== -1) {
+    data.vices[idx] = { ...data.vices[idx], ...partial }
+    saveData(data)
+  }
+}
+
 export function removeLastTap(viceId: string): void {
   const data = getData()
   const idx = [...data.taps].map((t, i) => ({ t, i })).reverse().find(({ t }) => t.viceId === viceId)?.i

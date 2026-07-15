@@ -67,6 +67,13 @@ export function getProjections(monthlySpend: number): {
   }
 }
 
+export function getSpendByDayOfWeek(taps: Tap[]): { day: string; amount: number }[] {
+  const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+  const totals = new Array(7).fill(0)
+  taps.forEach(t => { totals[new Date(t.timestamp).getDay()] += t.priceAtTap })
+  return days.map((day, i) => ({ day, amount: parseFloat(totals[i].toFixed(2)) }))
+}
+
 export interface ChartPoint {
   date: string
   spent: number

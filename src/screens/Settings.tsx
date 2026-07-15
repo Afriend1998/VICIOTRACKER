@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Layout from '../components/Layout'
 import EmojiPicker from '../components/EmojiPicker'
-import { getData, updateSettings, resetData, exportJSON, addVice, removeVice } from '../lib/storage'
+import { getData, updateSettings, resetData, exportJSON, addVice, removeVice, updateVice } from '../lib/storage'
 import type { Vice, Category } from '../types'
 
 const CATEGORIES: { value: Category; label: string }[] = [
@@ -13,8 +13,83 @@ const CATEGORIES: { value: Category; label: string }[] = [
   { value: 'food',         label: '🍔 Comida' },
 ]
 
-function ViceRow({ vice, onDelete }: { vice: Vice; onDelete: () => void }) {
+function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => void; onUpdate: (p: Partial<Vice>) => void }) {
   const [confirming, setConfirming] = useState(false)
+  const [editing, setEditing] = useState(false)
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+  const [form, setForm] = useState({
+    name: vice.name, emoji: vice.emoji,
+    unitPrice: String(vice.unitPrice), dailyLimit: vice.dailyLimit ? String(vice.dailyLimit) : ''
+  })
+
+  if (editing) {
+    return (
+      <div className="bg-[#111] border border-[#00c896]/30 rounded-xl p-3 flex flex-col gap-2">
+        <div className="flex gap-2 items-center">
+          <button
+            onClick={() => setShowEmojiPicker(v => !v)}
+            className="w-10 h-10 rounded-xl text-xl flex items-center justify-center border border-[#333] bg-[#1a1a1a] shrink-0"
+          >
+            {form.emoji}
+          </button>
+          <input
+            className="flex-1 bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm"
+            value={form.name}
+            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+            placeholder="Nombre"
+          />
+        </div>
+        {showEmojiPicker && (
+          <EmojiPicker
+            onSelect={e => { setForm(f => ({ ...f, emoji: e })); setShowEmojiPicker(false) }}
+            onClose={() => setShowEmojiPicker(false)}
+          />
+        )}
+        <div className="flex gap-2">
+          <div className="flex-1 relative">
+            <input
+              className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-6"
+              type="number" inputMode="decimal"
+              value={form.unitPrice}
+              onChange={e => setForm(f => ({ ...f, unitPrice: e.target.value }))}
+              placeholder="Precio"
+            />
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">€</span>
+          </div>
+          <div className="flex-1 relative">
+            <input
+              className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10"
+              type="number" inputMode="numeric"
+              value={form.dailyLimit}
+              onChange={e => setForm(f => ({ ...f, dailyLimit: e.target.value }))}
+              placeholder="Límite/día"
+            />
+            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/día</span>
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => {
+              onUpdate({
+                name: form.name.trim() || vice.name,
+                emoji: form.emoji || vice.emoji,
+                unitPrice: parseFloat(form.unitPrice) || vice.unitPrice,
+                dailyLimit: form.dailyLimit ? parseInt(form.dailyLimit) : undefined,
+              })
+              setEditing(false)
+            }}
+            className="flex-1 py-2 rounded-xl bg-[#00c896] text-black font-bold text-sm"
+          >
+            Guardar
+          </button>
+          <button onClick={() => setEditing(false)} className="flex-1 py-2 rounded-xl border border-[#333] text-[#555] text-sm">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex items-center gap-3 bg-[#111] border border-[#222] rounded-xl p-3">
       <span className="text-2xl">{vice.emoji}</span>
@@ -25,29 +100,14 @@ function ViceRow({ vice, onDelete }: { vice: Vice; onDelete: () => void }) {
           {vice.dailyLimit ? ` · límite ${vice.dailyLimit}/día` : ''}
         </p>
       </div>
+      <button onClick={() => setEditing(true)} className="text-[#555] hover:text-[#f0ece4] px-1 py-1 transition-colors shrink-0 text-base">✏️</button>
       {confirming ? (
         <div className="flex gap-1 shrink-0">
-          <button
-            onClick={onDelete}
-            className="text-xs font-bold px-2 py-1 rounded-lg bg-[#ff3b30] text-white"
-          >
-            Borrar
-          </button>
-          <button
-            onClick={() => setConfirming(false)}
-            className="text-xs px-2 py-1 rounded-lg border border-[#333] text-[#555]"
-          >
-            No
-          </button>
+          <button onClick={onDelete} className="text-xs font-bold px-2 py-1 rounded-lg bg-[#ff3b30] text-white">Borrar</button>
+          <button onClick={() => setConfirming(false)} className="text-xs px-2 py-1 rounded-lg border border-[#333] text-[#555]">No</button>
         </div>
       ) : (
-        <button
-          onClick={() => setConfirming(true)}
-          className="text-[#ff3b30] text-sm font-medium px-2 py-1 shrink-0"
-          aria-label="Eliminar vicio"
-        >
-          ✕
-        </button>
+        <button onClick={() => setConfirming(true)} className="text-[#ff3b30] text-sm font-medium px-2 py-1 shrink-0">✕</button>
       )}
     </div>
   )
@@ -111,6 +171,7 @@ export default function Settings() {
                 key={v.id}
                 vice={v}
                 onDelete={() => { removeVice(v.id); setTick(t => t + 1) }}
+                onUpdate={(p) => { updateVice(v.id, p); setTick(t => t + 1) }}
               />
             ))}
           </div>
@@ -243,6 +304,36 @@ export default function Settings() {
               <div className="flex justify-between text-xs text-[#444] mt-1">
                 <span>1%</span><span>S&P500 histórico ~10%</span><span>20%</span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Notifications */}
+        <section className="mb-6">
+          <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">Notificaciones</p>
+          <div className="bg-[#111] border border-[#222] rounded-2xl p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-[#f0ece4]">Recordatorio diario</p>
+                <p className="text-xs text-[#555] mt-0.5">Aviso si no has registrado nada hoy</p>
+              </div>
+              <button
+                onClick={async () => {
+                  if (!('Notification' in window)) return
+                  if (settings.notificationsEnabled) {
+                    saveSettings({ notificationsEnabled: false })
+                    return
+                  }
+                  const perm = await Notification.requestPermission()
+                  if (perm === 'granted') {
+                    saveSettings({ notificationsEnabled: true })
+                    new Notification('VicioTracker 🎯', { body: '¡Notificaciones activadas! Te avisaremos si no registras nada.' })
+                  }
+                }}
+                className={`relative w-12 h-6 rounded-full transition-colors ${settings.notificationsEnabled ? 'bg-[#00c896]' : 'bg-[#333]'}`}
+              >
+                <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${settings.notificationsEnabled ? 'translate-x-7' : 'translate-x-1'}`} />
+              </button>
             </div>
           </div>
         </section>

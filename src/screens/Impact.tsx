@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import {
-  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
+  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
+  BarChart, Bar, Cell
 } from 'recharts'
 import Layout from '../components/Layout'
 import ImpactCard from '../components/ImpactCard'
 import { getData } from '../lib/storage'
 import {
-  getTotalSpent, getMonthlySpend, getProjections, getChartData
+  getTotalSpent, getMonthlySpend, getProjections, getChartData, getSpendByDayOfWeek
 } from '../lib/finance'
 import type { Period } from '../types'
 
@@ -33,6 +34,8 @@ export default function Impact() {
   const monthly = getMonthlySpend(taps)
   const projections = getProjections(monthly)
   const chartData = getChartData(taps, settings.annualReturn)
+  const dayData = getSpendByDayOfWeek(taps)
+  const maxDay = Math.max(...dayData.map(d => d.amount), 0.01)
 
   return (
     <Layout>
@@ -137,6 +140,36 @@ export default function Impact() {
             )
           })}
         </div>
+
+        {/* Day of week */}
+        {taps.length > 0 && (
+          <div className="mt-5">
+            <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">
+              Gasto por día de la semana
+            </p>
+            <div className="bg-[#111] border border-[#222] rounded-2xl p-4">
+              <div className="flex items-end justify-between gap-1 h-28">
+                {dayData.map(d => (
+                  <div key={d.day} className="flex flex-col items-center gap-1 flex-1">
+                    <p className="text-[9px] text-[#555]">
+                      {d.amount > 0 ? `${cur}${d.amount.toFixed(0)}` : ''}
+                    </p>
+                    <div
+                      className="w-full rounded-t-md transition-all"
+                      style={{
+                        height: `${Math.max((d.amount / maxDay) * 72, d.amount > 0 ? 4 : 0)}px`,
+                        background: d.amount === maxDay && maxDay > 0 ? '#ff3b30' : '#00c896',
+                        opacity: d.amount > 0 ? 1 : 0.1,
+                      }}
+                    />
+                    <p className="text-[10px] text-[#555] font-medium">{d.day}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[10px] text-[#444] text-center mt-2">El día rojo es donde más gastas</p>
+            </div>
+          </div>
+        )}
 
         {taps.length === 0 && (
           <div className="mt-8 text-center">
