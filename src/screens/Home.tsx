@@ -17,6 +17,8 @@ export default function Home() {
   const [undo, setUndo] = useState<{ viceId: string; name: string; emoji: string } | null>(null)
   const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [alertDismissed, setAlertDismissed] = useState(false)
+  const [lostChallenge, setLostChallenge] = useState<{ description: string; penalty: number } | null>(null)
+  const lostTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const data = getData()
   const { vices, taps, settings } = data
@@ -45,8 +47,20 @@ export default function Home() {
   }, [tick])
 
   const handleTap = useCallback((viceId: string, unitPrice: number, viceName: string, viceEmoji: string) => {
+    const current = getData()
+    const activeChallengeForVice = current.challenges.find(
+      c => c.status === 'active' && c.viceId === viceId
+    )
+
     const tap: Tap = { viceId, timestamp: new Date().toISOString(), priceAtTap: unitPrice }
     addTap(tap)
+
+    if (activeChallengeForVice) {
+      updateChallenge(activeChallengeForVice.id, { status: 'lost' })
+      if (lostTimer.current) clearTimeout(lostTimer.current)
+      setLostChallenge({ description: activeChallengeForVice.description, penalty: activeChallengeForVice.penalty })
+      lostTimer.current = setTimeout(() => setLostChallenge(null), 8000)
+    }
 
     const newTaps = [...taps, tap]
     const viceTaps = newTaps.filter(t => t.viceId === viceId).length
@@ -207,6 +221,27 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      {/* Toast reto perdido */}
+      {lostChallenge && (
+        <div className="fixed top-1/3 -translate-y-1/2 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[390px]">
+          <div className="bg-[#1a1a1a] border border-[#ff3b30]/50 rounded-2xl px-4 py-3 shadow-xl">
+            <p className="text-sm font-bold text-[#ff3b30] mb-1">💸 Reto perdido</p>
+            <p className="text-xs text-[#888] mb-2">{lostChallenge.description}</p>
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-[#f0ece4]">Invierte <span className="font-bold text-[#00c896]">{data.settings.currency === 'EUR' ? '€' : '$'}{lostChallenge.penalty}</span></p>
+              <a
+                href="https://afriend1998.github.io/break_even/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-bold text-[#00c896] underline"
+              >
+                Break Even →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Toast deshacer */}
       {undo && (
