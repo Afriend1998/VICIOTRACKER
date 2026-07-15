@@ -28,6 +28,7 @@ export interface Settings {
   annualReturn: number
   startDate: string
   notificationsEnabled?: boolean
+  investmentThreshold?: number
 }
 
 export interface AppData {

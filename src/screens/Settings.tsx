@@ -308,6 +308,25 @@ export default function Settings() {
           </div>
         </section>
 
+        {/* Investment alert threshold */}
+        <section className="mb-6">
+          <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">Alerta de inversión</p>
+          <div className="bg-[#111] border border-[#222] rounded-2xl p-4">
+            <p className="text-sm text-[#f0ece4] mb-1">Avísame cuando gaste más de</p>
+            <p className="text-xs text-[#555] mb-3">Aparece un consejo de inversión en la pantalla principal</p>
+            <div className="relative">
+              <input
+                type="number" inputMode="decimal"
+                className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-12"
+                value={settings.investmentThreshold ?? ''}
+                onChange={e => saveSettings({ investmentThreshold: e.target.value ? parseFloat(e.target.value) : undefined })}
+                placeholder="Ej: 30"
+              />
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-sm">€/mes</span>
+            </div>
+          </div>
+        </section>
+
         {/* Notifications */}
         <section className="mb-6">
           <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">Notificaciones</p>
@@ -363,6 +382,33 @@ export default function Settings() {
                 Cancelar
               </button>
             )}
+          </div>
+        </section>
+
+        {/* Premium */}
+        <section className="mb-6">
+          <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">VicioTracker Pro</p>
+          <div className="bg-gradient-to-br from-[#1a1400] to-[#111] border border-[#f59e0b]/30 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xl">⭐</span>
+              <p className="text-sm font-bold text-[#f59e0b]">Próximamente</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              {[
+                '🔓 Vicios ilimitados',
+                '📱 Widget en pantalla de inicio por cada vicio',
+                '📊 Estadísticas avanzadas y exportar PDF',
+                '🔔 Notificaciones personalizadas por vicio',
+              ].map(f => (
+                <div key={f} className="flex items-center gap-2 opacity-60">
+                  <span className="text-xs text-[#f59e0b]">🔒</span>
+                  <p className="text-xs text-[#888]">{f}</p>
+                </div>
+              ))}
+            </div>
+            <button className="mt-4 w-full py-3 rounded-xl bg-[#f59e0b]/20 border border-[#f59e0b]/40 text-[#f59e0b] text-sm font-bold">
+              Próximamente · Únete a la lista de espera
+            </button>
           </div>
         </section>
 

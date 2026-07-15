@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti'
 import Layout from '../components/Layout'
 import ViceButton from '../components/ViceButton'
 import { getData, addTap, removeLastTap } from '../lib/storage'
-import { getDailyTaps, getTotalSpent } from '../lib/finance'
+import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
 import type { Tap } from '../types'
 
 const TAP_MILESTONES = [10, 25, 50, 100, 250, 500]
@@ -14,11 +14,18 @@ export default function Home() {
   const [tick, setTick] = useState(0)
   const [undo, setUndo] = useState<{ viceId: string; name: string; emoji: string } | null>(null)
   const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [alertDismissed, setAlertDismissed] = useState(false)
 
   const data = getData()
   const { vices, taps, settings } = data
 
   const totalToday = getTotalSpent(taps, 'today')
+  const monthly = getMonthlySpend(taps)
+  const threshold = settings.investmentThreshold ?? 0
+  const showInvestAlert = !alertDismissed && threshold > 0 && monthly >= threshold
+  const investSuggest = monthly * 0.5
+  const projected20y = calculateFV(investSuggest, 0.08, 240)
+  const cur = settings.currency === 'EUR' ? '€' : '$'
 
   const handleTap = useCallback((viceId: string, unitPrice: number, viceName: string, viceEmoji: string) => {
     const tap: Tap = { viceId, timestamp: new Date().toISOString(), priceAtTap: unitPrice }
@@ -71,8 +78,7 @@ export default function Home() {
           <div>
             <p className="text-xs text-[#555] uppercase tracking-widest font-medium">Hoy</p>
             <p className="text-3xl font-black text-[#f0ece4]">
-              {settings.currency === 'EUR' ? '€' : '$'}
-              {totalToday.toFixed(2)}
+              {cur}{totalToday.toFixed(2)}
             </p>
           </div>
           <div className="text-right">
@@ -146,7 +152,7 @@ export default function Home() {
             <div key={s.label} className="bg-[#111] rounded-xl p-3 text-center border border-[#1a1a1a]">
               <p className="text-xs text-[#555] mb-1">{s.label}</p>
               <p className="text-sm font-bold text-[#f0ece4]">
-                {settings.currency === 'EUR' ? '€' : '$'}{s.value.toFixed(2)}
+                {cur}{s.value.toFixed(2)}
               </p>
             </div>
           ))}
@@ -155,6 +161,22 @@ export default function Home() {
         <p className="text-center text-xs text-[#333] mt-6">
           Toca cada vez que consumas
         </p>
+
+        {/* Alerta de inversión */}
+        {showInvestAlert && (
+          <div className="mt-4 bg-[#00c896]/10 border border-[#00c896]/30 rounded-2xl p-4">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex-1">
+                <p className="text-sm font-bold text-[#00c896] mb-1">💡 ¿Y si lo invirtieras?</p>
+                <p className="text-xs text-[#888] leading-relaxed">
+                  Gastas {cur}{monthly.toFixed(0)}/mes en vicios. Si invirtieras el 50% ({cur}{investSuggest.toFixed(0)}/mes), en 20 años tendrías{' '}
+                  <span className="text-[#00c896] font-bold">{cur}{(projected20y / 1000).toFixed(1)}k</span>.
+                </p>
+              </div>
+              <button onClick={() => setAlertDismissed(true)} className="text-[#444] text-xs shrink-0 mt-0.5">✕</button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Toast deshacer */}

@@ -22,6 +22,15 @@ export default defineConfig({
           { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'pwa-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
         ],
+        shortcuts: [
+          {
+            name: 'Registro rápido',
+            short_name: 'Registrar',
+            description: 'Registra un vicio directamente',
+            url: '/#/quick',
+            icons: [{ src: 'pwa-icon.svg', sizes: 'any' }],
+          },
+        ],
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],

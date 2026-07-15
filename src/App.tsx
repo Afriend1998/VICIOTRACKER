@@ -4,6 +4,7 @@ import Onboarding from './screens/Onboarding'
 import Home from './screens/Home'
 import Impact from './screens/Impact'
 import History from './screens/History'
+import Quick from './screens/Quick'
 import Health from './screens/Health'
 import Settings from './screens/Settings'
 import { hasCompletedOnboarding } from './lib/storage'
@@ -11,6 +12,7 @@ import { hasCompletedOnboarding } from './lib/storage'
 function MainApp() {
   return (
     <Routes>
+      <Route path="/quick" element={<Quick />} />
       <Route path="/home" element={<Home />} />
       <Route path="/impact" element={<Impact />} />
       <Route path="/history" element={<History />} />
