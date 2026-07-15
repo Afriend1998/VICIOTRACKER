@@ -2,13 +2,16 @@ import type { Tap, Vice } from '../types'
 
 export function getStreak(vice: Vice, taps: Tap[]): number {
   const viceTaps = taps.filter(t => t.viceId === vice.id)
+  if (viceTaps.length === 0) return 0
   const limit = vice.dailyLimit ?? Infinity
   let streak = 0
   const today = new Date()
+  const createdAt = new Date(vice.createdAt)
 
   for (let i = 0; i < 365; i++) {
     const date = new Date(today)
     date.setDate(today.getDate() - i)
+    if (date < createdAt) break
     const dateStr = date.toDateString()
     const dayCount = viceTaps.filter(t => new Date(t.timestamp).toDateString() === dateStr).length
     if (dayCount <= limit) {
