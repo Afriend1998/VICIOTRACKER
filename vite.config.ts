@@ -35,13 +35,15 @@ export default defineConfig({
             label: 'Pantalla principal de VicioTracker',
           },
         ],
+        dir: 'ltr',
+        prefer_related_applications: false,
         shortcuts: [
           {
             name: 'Registro rápido',
             short_name: 'Registrar',
             description: 'Registra un vicio directamente',
             url: '/#/quick',
-            icons: [{ src: 'pwa-icon.svg', sizes: 'any' }],
+            icons: [{ src: 'pwa-192.png', sizes: '192x192', type: 'image/png' }],
           },
         ],
       },
