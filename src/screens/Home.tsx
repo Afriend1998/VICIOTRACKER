@@ -7,7 +7,7 @@ import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement } fr
 import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
 import { getStreak } from '../lib/streaks'
 import { checkAndUnlock } from '../lib/achievements'
-import { getProgressScore } from '../lib/goals'
+import { getProgressScore, getAddictionScore } from '../lib/goals'
 import type { Tap } from '../types'
 
 const TAP_MILESTONES = [10, 25, 50, 100, 250, 500]
@@ -221,6 +221,26 @@ export default function Home() {
                         💡 {vice.ifUrge}
                       </p>
                     )}
+                    {/* Barra de enganche */}
+                    {(() => {
+                      const score = getAddictionScore(vice, taps)
+                      const barW = size === 'large' ? 'w-40' : size === 'medium' ? 'w-32' : 'w-24'
+                      return (
+                        <div className={`${barW} mt-2`}>
+                          <div className="relative h-2 rounded-full overflow-visible"
+                            style={{ background: 'linear-gradient(to right, #ff3b30, #ffd60a 50%, #00c896)' }}>
+                            <div
+                              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white border-2 border-[#0a0a0a] shadow transition-all duration-500"
+                              style={{ left: `${score}%` }}
+                            />
+                          </div>
+                          <div className="flex justify-between text-[8px] mt-1 text-[#555]">
+                            <span>😣</span>
+                            <span>😊</span>
+                          </div>
+                        </div>
+                      )
+                    })()}
                   </div>
                 )
               })}

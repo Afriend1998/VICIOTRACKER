@@ -31,6 +31,20 @@ export function getGoalProgress(vice: Vice, taps: Tap[]): GoalProgress {
   return { current, previous, goal, improved, percentToGoal }
 }
 
+// Score 0–100 por vicio individual: 0 = muy enganchado, 100 = genial
+export function getAddictionScore(vice: Vice, taps: Tap[]): number {
+  const current = getMonthCount(taps, vice.id, 0)
+  const previous = getMonthCount(taps, vice.id, -1)
+
+  if (vice.monthlyGoal != null && vice.monthlyGoal > 0) {
+    return Math.max(0, Math.min(100, Math.round(100 - (current / vice.monthlyGoal) * 50)))
+  }
+  if (previous > 0) {
+    return Math.max(0, Math.min(100, Math.round(100 - (current / previous) * 50)))
+  }
+  return current === 0 ? 80 : 50
+}
+
 // Returns 0–100: 100 = perfectamente bien, 0 = muy mal
 export function getProgressScore(vices: Vice[], taps: Tap[], settings: Settings): number {
   if (settings.hideMode === 'manual') return Math.min(100, Math.max(0, settings.manualProgress ?? 50))
