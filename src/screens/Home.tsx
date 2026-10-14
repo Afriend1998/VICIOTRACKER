@@ -7,6 +7,7 @@ import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement } fr
 import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
 import { getStreak } from '../lib/streaks'
 import { checkAndUnlock } from '../lib/achievements'
+import { getQualitativeStatus } from '../lib/goals'
 import type { Tap } from '../types'
 
 const TAP_MILESTONES = [10, 25, 50, 100, 250, 500]
@@ -30,11 +31,35 @@ export default function Home() {
   const investSuggest = monthly * 0.5
   const projected20y = calculateFV(investSuggest, 0.08, 240)
   const cur = settings.currency === 'EUR' ? '€' : '$'
+  const hide = settings.hideSpendAmounts ?? false
+  const qualStatus = hide ? getQualitativeStatus(taps) : null
+
+  const STREAK_MILESTONES = [1, 3, 7, 14, 30, 60, 90]
 
   useEffect(() => {
     const current = getData()
     const newOnes = checkAndUnlock(current)
     newOnes.forEach(id => unlockAchievement(id))
+
+    // Celebración de racha (Punto 6) — distinta al confetti de consumo
+    current.vices.forEach(vice => {
+      const streak = getStreak(vice, current.taps)
+      STREAK_MILESTONES.forEach(days => {
+        const achievementId = `streak-days-${days}-${vice.id}`
+        if (streak === days && !current.unlockedAchievements.includes(achievementId)) {
+          unlockAchievement(achievementId)
+          confetti({
+            particleCount: 60,
+            spread: 100,
+            origin: { y: 0.4 },
+            colors: ['#00c896', '#00ff99', '#ffffff', '#ffd700'],
+            shapes: ['star'],
+            scalar: 1.5,
+          })
+        }
+      })
+    })
+
     // evaluate active challenges
     current.challenges.filter(c => c.status === 'active').forEach(c => {
       const failed = current.taps.some(t => t.viceId === c.viceId && new Date(t.timestamp) >= new Date(c.startDate))
@@ -107,9 +132,13 @@ export default function Home() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className="text-xs text-[#555] uppercase tracking-widest font-medium">Hoy</p>
-            <p className="text-3xl font-black text-[#f0ece4]">
-              {cur}{totalToday.toFixed(2)}
-            </p>
+            {hide ? (
+              <p className={`text-2xl font-black ${qualStatus === 'bien' ? 'text-[#00c896]' : qualStatus === 'mal' ? 'text-[#ff3b30]' : 'text-[#f0ece4]'}`}>
+                {qualStatus === 'bien' ? '✅ Vas bien' : qualStatus === 'mal' ? '⚠️ Vas mal' : '—'}
+              </p>
+            ) : (
+              <p className="text-3xl font-black text-[#f0ece4]">{cur}{totalToday.toFixed(2)}</p>
+            )}
           </div>
           <div className="text-right">
             <p className="text-xs text-[#555]">
@@ -178,20 +207,22 @@ export default function Home() {
         })()}
 
         {/* Quick stats row */}
-        <div className="grid grid-cols-3 gap-2 mt-6">
-          {[
-            { label: 'Esta semana', value: getTotalSpent(taps, 'week') },
-            { label: 'Este mes',    value: getTotalSpent(taps, 'month') },
-            { label: 'Total',       value: getTotalSpent(taps, 'all') },
-          ].map(s => (
-            <div key={s.label} className="bg-[#111] rounded-xl p-3 text-center border border-[#1a1a1a]">
-              <p className="text-xs text-[#555] mb-1">{s.label}</p>
-              <p className="text-sm font-bold text-[#f0ece4]">
-                {cur}{s.value.toFixed(2)}
-              </p>
-            </div>
-          ))}
-        </div>
+        {!hide && (
+          <div className="grid grid-cols-3 gap-2 mt-6">
+            {[
+              { label: 'Esta semana', value: getTotalSpent(taps, 'week') },
+              { label: 'Este mes',    value: getTotalSpent(taps, 'month') },
+              { label: 'Total',       value: getTotalSpent(taps, 'all') },
+            ].map(s => (
+              <div key={s.label} className="bg-[#111] rounded-xl p-3 text-center border border-[#1a1a1a]">
+                <p className="text-xs text-[#555] mb-1">{s.label}</p>
+                <p className="text-sm font-bold text-[#f0ece4]">
+                  {cur}{s.value.toFixed(2)}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
 
         <p className="text-center text-xs text-[#333] mt-6">
           Toca cada vez que consumas

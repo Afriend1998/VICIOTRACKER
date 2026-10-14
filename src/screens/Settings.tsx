@@ -19,7 +19,8 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [form, setForm] = useState({
     name: vice.name, emoji: vice.emoji,
-    unitPrice: String(vice.unitPrice), dailyLimit: vice.dailyLimit ? String(vice.dailyLimit) : ''
+    unitPrice: String(vice.unitPrice ?? ''), dailyLimit: vice.dailyLimit ? String(vice.dailyLimit) : '',
+    monthlyGoal: vice.monthlyGoal ? String(vice.monthlyGoal) : ''
   })
 
   if (editing) {
@@ -66,6 +67,16 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
             />
             <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/día</span>
           </div>
+          <div className="flex-1 relative">
+            <input
+              className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10"
+              type="number" inputMode="numeric"
+              value={form.monthlyGoal}
+              onChange={e => setForm(f => ({ ...f, monthlyGoal: e.target.value }))}
+              placeholder="Meta/mes"
+            />
+            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/mes</span>
+          </div>
         </div>
         <div className="flex gap-2">
           <button
@@ -73,8 +84,9 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
               onUpdate({
                 name: form.name.trim() || vice.name,
                 emoji: form.emoji || vice.emoji,
-                unitPrice: parseFloat(form.unitPrice) || vice.unitPrice,
+                unitPrice: form.unitPrice ? parseFloat(form.unitPrice) : undefined,
                 dailyLimit: form.dailyLimit ? parseInt(form.dailyLimit) : undefined,
+                monthlyGoal: form.monthlyGoal ? parseInt(form.monthlyGoal) : undefined,
               })
               setEditing(false)
             }}
@@ -302,7 +314,7 @@ export default function Settings() {
             </div>
 
             {/* Annual return */}
-            <div className="p-4">
+            <div className="p-4 border-b border-[#1a1a1a]">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm text-[#f0ece4]">Rentabilidad anual asumida</p>
                 <p className="text-sm font-bold text-[#00c896]">
@@ -318,6 +330,20 @@ export default function Settings() {
               <div className="flex justify-between text-xs text-[#444] mt-1">
                 <span>1%</span><span>S&P500 histórico ~10%</span><span>20%</span>
               </div>
+            </div>
+
+            {/* Ocultar gasto */}
+            <div className="flex items-center justify-between p-4">
+              <div>
+                <p className="text-sm text-[#f0ece4]">Ocultar cantidades de dinero</p>
+                <p className="text-xs text-[#555] mt-0.5">Muestra "Vas bien / Vas mal" en lugar de €</p>
+              </div>
+              <button
+                onClick={() => saveSettings({ hideSpendAmounts: !(settings.hideSpendAmounts ?? false) })}
+                className={`relative w-12 h-6 rounded-full transition-colors ${settings.hideSpendAmounts ? 'bg-[#00c896]' : 'bg-[#333]'}`}
+              >
+                <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${settings.hideSpendAmounts ? 'translate-x-7' : 'translate-x-1'}`} />
+              </button>
             </div>
           </div>
         </section>

@@ -9,6 +9,8 @@ import { getData } from '../lib/storage'
 import {
   getTotalSpent, getMonthlySpend, getProjections, getChartData, getSpendByDayOfWeek
 } from '../lib/finance'
+import { getBestEquivalence } from '../lib/equivalences'
+import { getGoalProgress } from '../lib/goals'
 import type { Period } from '../types'
 
 const PERIODS: { key: Period; label: string }[] = [
@@ -27,8 +29,9 @@ const SCENARIO_LABELS = {
 
 export default function Impact() {
   const [period, setPeriod] = useState<Period>('month')
-  const { taps, settings } = getData()
+  const { taps, settings, vices } = getData()
   const cur = settings.currency === 'EUR' ? '€' : '$'
+  const hide = settings.hideSpendAmounts ?? false
 
   const spent = getTotalSpent(taps, period)
   const monthly = getMonthlySpend(taps)
@@ -83,11 +86,26 @@ export default function Impact() {
         </div>
 
         {/* Main spend card */}
+        {!hide && (
         <ImpactCard
           label={`Gastado · ${PERIODS.find(p => p.key === period)?.label}`}
           value={spent}
           currency={cur}
         />
+        )}
+
+        {/* Equivalencia tangible (Punto 5) */}
+        {!hide && spent > 0 && (() => {
+          const best = getBestEquivalence(spent)
+          return best ? (
+            <div className="mt-3 bg-[#111] border border-[#222] rounded-2xl p-4 text-center">
+              <p className="text-xs text-[#555] mb-1">Esto equivale a…</p>
+              <p className="text-2xl font-black text-[#f0ece4]">
+                {best.eq.emoji} {best.count} {best.count === 1 ? best.eq.name : best.eq.name + 's'}
+              </p>
+            </div>
+          ) : null
+        })()}
 
         {/* Monthly spend */}
         <div className="mt-3">
@@ -177,6 +195,43 @@ export default function Impact() {
             )
           })}
         </div>
+
+        {/* Objetivos mensuales (Punto 4) */}
+        {vices.some(v => v.monthlyGoal != null) && (
+          <div className="mt-5">
+            <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">Objetivos del mes</p>
+            <div className="flex flex-col gap-3">
+              {vices.filter(v => v.monthlyGoal != null).map(vice => {
+                const prog = getGoalProgress(vice, taps)
+                const pct = prog.goal != null ? Math.min(1, prog.current / prog.goal) : 0
+                const over = prog.goal != null && prog.current > prog.goal
+                return (
+                  <div key={vice.id} className={`bg-[#111] border rounded-2xl p-4 ${over ? 'border-[#ff3b30]/30' : 'border-[#222]'}`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">{vice.emoji}</span>
+                        <p className="text-sm font-semibold text-[#f0ece4]">{vice.name}</p>
+                      </div>
+                      <p className={`text-sm font-black ${over ? 'text-[#ff3b30]' : 'text-[#00c896]'}`}>
+                        {prog.current} / {prog.goal}
+                      </p>
+                    </div>
+                    <div className="h-1.5 bg-[#1a1a1a] rounded-full overflow-hidden mb-1">
+                      <div
+                        className={`h-full rounded-full transition-all ${over ? 'bg-[#ff3b30]' : 'bg-[#00c896]'}`}
+                        style={{ width: `${Math.min(pct * 100, 100)}%` }}
+                      />
+                    </div>
+                    <div className="flex justify-between text-xs text-[#555]">
+                      <span>Mes pasado: {prog.previous}</span>
+                      <span>{over ? '⚠ Objetivo superado' : `${prog.goal! - prog.current} para el límite`}</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Day of week */}
         {taps.length > 0 && (

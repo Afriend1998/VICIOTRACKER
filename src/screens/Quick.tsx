@@ -9,7 +9,7 @@ export default function Quick() {
   const [done, setDone] = useState<string | null>(null)
   const { vices } = getData()
 
-  function handleTap(viceId: string, unitPrice: number, emoji: string) {
+  function handleTap(viceId: string, unitPrice: number | undefined, emoji: string) {
     const tap: Tap = { viceId, timestamp: new Date().toISOString(), priceAtTap: unitPrice }
     addTap(tap)
     if (navigator.vibrate) navigator.vibrate(40)
@@ -44,7 +44,7 @@ export default function Quick() {
                 <span className="text-4xl">{vice.emoji}</span>
                 <div className="text-left">
                   <p className="text-[#f0ece4] font-bold text-lg">{vice.name}</p>
-                  <p className="text-[#555] text-sm">{vice.unitPrice.toFixed(2)}€</p>
+                  {vice.unitPrice != null && <p className="text-[#555] text-sm">{vice.unitPrice.toFixed(2)}€</p>}
                 </div>
               </motion.button>
             ))}
