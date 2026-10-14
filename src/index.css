@@ -9,7 +9,7 @@
 
 html, body {
   height: 100%;
-  background: #ff0000;
+  background: #0a0a0a;
   color: #f0ece4;
   font-family: 'Inter', sans-serif;
   overscroll-behavior: none;
@@ -27,7 +27,7 @@ html, body {
   max-width: 430px;
   margin: 0 auto;
   position: relative;
-  background: #ff0000;
+  background: #0a0a0a;
 }
 
 .screen-content {
