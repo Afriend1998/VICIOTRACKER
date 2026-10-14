@@ -360,7 +360,7 @@ export default function Settings() {
               </div>
               <button
                 onClick={() => saveSettings({ hideSpendAmounts: !(settings.hideSpendAmounts ?? false) })}
-                className={`relative shrink-0 w-12 h-6 rounded-full transition-colors ${settings.hideSpendAmounts ? 'bg-[#00c896]' : 'bg-[#333]'}`}
+                className={`relative shrink-0 w-12 h-6 rounded-full overflow-hidden transition-colors ${settings.hideSpendAmounts ? 'bg-[#00c896]' : 'bg-[#333]'}`}
               >
                 <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${settings.hideSpendAmounts ? 'translate-x-7' : 'translate-x-1'}`} />
               </button>
@@ -381,7 +381,7 @@ export default function Settings() {
                           : 'bg-[#1a1a1a] text-[#555] border border-[#333]'
                       }`}
                     >
-                      {m === 'auto' ? '⚡ Automático' : '🎚 Manual'}
+                      {m === 'auto' ? '⚡ Automático' : '⚙️ Manual'}
                     </button>
                   ))}
                 </div>
@@ -448,7 +448,7 @@ export default function Settings() {
                     new Notification('VicioTracker 🎯', { body: '¡Notificaciones activadas! Te avisaremos si no registras nada.' })
                   }
                 }}
-                className={`relative w-12 h-6 rounded-full transition-colors ${settings.notificationsEnabled ? 'bg-[#00c896]' : 'bg-[#333]'}`}
+                className={`relative w-12 h-6 rounded-full overflow-hidden transition-colors ${settings.notificationsEnabled ? 'bg-[#00c896]' : 'bg-[#333]'}`}
               >
                 <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${settings.notificationsEnabled ? 'translate-x-7' : 'translate-x-1'}`} />
               </button>
