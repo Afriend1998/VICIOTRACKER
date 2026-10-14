@@ -229,7 +229,7 @@ export default function Home() {
         </p>
 
         {/* Alerta de inversión */}
-        {showInvestAlert && (
+        {showInvestAlert && !hide && (
           <div className="mt-4 bg-[#00c896]/10 border border-[#00c896]/30 rounded-2xl p-4">
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1">

@@ -108,6 +108,7 @@ export default function Impact() {
         })()}
 
         {/* Monthly spend */}
+        {!hide && (
         <div className="mt-3">
           <ImpactCard
             label="Gasto mensual promedio"
@@ -116,9 +117,10 @@ export default function Impact() {
             subtitle="Base para las proyecciones de inversión"
           />
         </div>
+        )}
 
         {/* Week comparison */}
-        {prevWeek > 0 && (
+        {!hide && prevWeek > 0 && (
           <div className="mt-3 bg-[#111] border border-[#222] rounded-2xl p-4 flex items-center justify-between">
             <div>
               <p className="text-xs text-[#555] mb-1">Esta semana vs anterior</p>
@@ -133,7 +135,7 @@ export default function Impact() {
         )}
 
         {/* Chart */}
-        {chartData.length > 1 && (
+        {!hide && chartData.length > 1 && (
           <div className="mt-5">
             <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">
               Gasto acumulado vs inversión hipotética
@@ -165,6 +167,7 @@ export default function Impact() {
         )}
 
         {/* Projections */}
+        {!hide && (
         <div className="mt-5">
           <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">
             Si invirtieras {cur}{monthly.toFixed(0)}/mes desde ahora…
@@ -195,6 +198,7 @@ export default function Impact() {
             )
           })}
         </div>
+        )}
 
         {/* Objetivos mensuales (Punto 4) */}
         {vices.some(v => v.monthlyGoal != null) && (

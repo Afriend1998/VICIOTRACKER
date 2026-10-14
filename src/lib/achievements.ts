@@ -20,7 +20,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'streak-7',     emoji: '⚡', name: 'Racha de 7 días',   desc: 'Una semana bajo control',               check: d => d.vices.some(v => getStreak(v, d.taps) >= 7) },
   { id: 'streak-30',    emoji: '🏆', name: 'Racha de 30 días',  desc: 'Un mes bajo el límite. Brutal.',        check: d => d.vices.some(v => getStreak(v, d.taps) >= 30) },
   { id: 'challenge-won',emoji: '⚔️', name: 'Reto superado',     desc: 'Ganaste tu primer reto',                check: d => d.challenges.some(c => c.status === 'won') },
-  { id: '5-vices',      emoji: '🎪', name: 'Coleccionista',     desc: '5 vicios configurados a la vez',        check: d => d.vices.length >= 5 },
+  { id: '5-vices',      emoji: '🎪', name: 'Coleccionista',     desc: 'Tienes los 3 vicios configurados',      check: d => d.vices.length >= 3 },
   { id: 'investor',     emoji: '📈', name: 'Mentalidad inversora', desc: 'Configuraste una alerta de inversión', check: d => (d.settings.investmentThreshold ?? 0) > 0 },
 ]
 
