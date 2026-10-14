@@ -15,6 +15,7 @@ export interface Vice {
   healthMetrics: HealthMetrics
   dailyLimit?: number
   monthlyGoal?: number
+  ifUrge?: string
   createdAt: string
 }
 
@@ -31,6 +32,8 @@ export interface Settings {
   notificationsEnabled?: boolean
   investmentThreshold?: number
   hideSpendAmounts?: boolean
+  hideMode?: 'auto' | 'manual'
+  manualProgress?: number
 }
 
 export interface Challenge {

@@ -1,4 +1,4 @@
-import type { Vice, Tap } from '../types'
+import type { Vice, Tap, Settings } from '../types'
 
 export function getMonthCount(taps: Tap[], viceId: string, monthOffset = 0): number {
   const now = new Date()
@@ -29,6 +29,21 @@ export function getGoalProgress(vice: Vice, taps: Tap[]): GoalProgress {
     ? current <= goal ? 100 : 0
     : null
   return { current, previous, goal, improved, percentToGoal }
+}
+
+// Returns 0–100: 100 = perfectamente bien, 0 = muy mal
+export function getProgressScore(vices: Vice[], taps: Tap[], settings: Settings): number {
+  if (settings.hideMode === 'manual') return Math.min(100, Math.max(0, settings.manualProgress ?? 50))
+
+  const scores = vices.map(vice => {
+    const current = getMonthCount(taps, vice.id, 0)
+    const ref = vice.monthlyGoal ?? getMonthCount(taps, vice.id, -1)
+    if (ref === 0) return current === 0 ? 100 : 30
+    return Math.max(0, Math.min(100, Math.round(100 - (current / ref) * 50)))
+  })
+
+  if (scores.length === 0) return 50
+  return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length)
 }
 
 export function getQualitativeStatus(taps: Tap[]): 'bien' | 'mal' | 'neutral' {

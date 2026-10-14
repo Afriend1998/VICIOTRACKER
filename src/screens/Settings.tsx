@@ -20,7 +20,8 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
   const [form, setForm] = useState({
     name: vice.name, emoji: vice.emoji,
     unitPrice: String(vice.unitPrice ?? ''), dailyLimit: vice.dailyLimit ? String(vice.dailyLimit) : '',
-    monthlyGoal: vice.monthlyGoal ? String(vice.monthlyGoal) : ''
+    monthlyGoal: vice.monthlyGoal ? String(vice.monthlyGoal) : '',
+    ifUrge: vice.ifUrge ?? ''
   })
 
   if (editing) {
@@ -78,6 +79,12 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
             <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/mes</span>
           </div>
         </div>
+        <input
+          className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm"
+          value={form.ifUrge}
+          onChange={e => setForm(f => ({ ...f, ifUrge: e.target.value }))}
+          placeholder="Si siento ganas, voy a… (opcional)"
+        />
         <div className="flex gap-2">
           <button
             onClick={() => {
@@ -87,6 +94,7 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
                 unitPrice: form.unitPrice ? parseFloat(form.unitPrice) : undefined,
                 dailyLimit: form.dailyLimit ? parseInt(form.dailyLimit) : undefined,
                 monthlyGoal: form.monthlyGoal ? parseInt(form.monthlyGoal) : undefined,
+                ifUrge: form.ifUrge.trim() || undefined,
               })
               setEditing(false)
             }}
@@ -131,7 +139,7 @@ export default function Settings() {
   const [tick, setTick] = useState(0)
   const [showAddForm, setShowAddForm] = useState((location.state as { openAdd?: boolean } | null)?.openAdd === true)
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
-  const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '', sinValor: false })
+  const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '', sinValor: false, ifUrge: '' })
   const [confirmReset, setConfirmReset] = useState(false)
 
   const data = getData()
@@ -152,9 +160,10 @@ export default function Settings() {
       category: newVice.category,
       healthMetrics: {},
       dailyLimit: newVice.dailyLimit ? parseInt(newVice.dailyLimit) : undefined,
+      ifUrge: newVice.ifUrge.trim() || undefined,
       createdAt: new Date().toISOString(),
     })
-    setNewVice({ name: '', emoji: '', unitPrice: '', category: 'energy-drink', dailyLimit: '', sinValor: false })
+    setNewVice({ name: '', emoji: '', unitPrice: '', category: 'energy-drink', dailyLimit: '', sinValor: false, ifUrge: '' })
     setShowAddForm(false)
     setTick(t => t + 1)
   }
@@ -281,6 +290,17 @@ export default function Settings() {
                 </select>
               </div>
 
+              {/* Si-entonces */}
+              <div>
+                <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Si siento ganas, en vez de consumir voy a… (opcional)</p>
+                <input
+                  className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm"
+                  value={newVice.ifUrge}
+                  onChange={e => setNewVice(f => ({ ...f, ifUrge: e.target.value }))}
+                  placeholder="Ej: salir a caminar 5 min"
+                />
+              </div>
+
               {/* Botones */}
               <div className="flex gap-2 pt-1">
                 <button onClick={handleAddVice} className="flex-1 py-3 rounded-xl bg-[#00c896] text-black font-bold text-sm">Añadir</button>
@@ -333,18 +353,57 @@ export default function Settings() {
             </div>
 
             {/* Ocultar gasto */}
-            <div className="flex items-center justify-between p-4">
-              <div>
+            <div className="flex items-center justify-between gap-4 p-4 border-b border-[#1a1a1a]">
+              <div className="flex-1 min-w-0">
                 <p className="text-sm text-[#f0ece4]">Ocultar cantidades de dinero</p>
-                <p className="text-xs text-[#555] mt-0.5">Muestra "Vas bien / Vas mal" en lugar de €</p>
+                <p className="text-xs text-[#555] mt-0.5 leading-relaxed">Muestra una barra de progreso en lugar de €</p>
               </div>
               <button
                 onClick={() => saveSettings({ hideSpendAmounts: !(settings.hideSpendAmounts ?? false) })}
-                className={`relative w-12 h-6 rounded-full transition-colors ${settings.hideSpendAmounts ? 'bg-[#00c896]' : 'bg-[#333]'}`}
+                className={`relative shrink-0 w-12 h-6 rounded-full transition-colors ${settings.hideSpendAmounts ? 'bg-[#00c896]' : 'bg-[#333]'}`}
               >
                 <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform ${settings.hideSpendAmounts ? 'translate-x-7' : 'translate-x-1'}`} />
               </button>
             </div>
+
+            {/* Modo barra: auto / manual */}
+            {settings.hideSpendAmounts && (
+              <div className="p-4">
+                <p className="text-xs text-[#555] uppercase tracking-widest mb-3">Modo de la barra</p>
+                <div className="flex gap-2 mb-3">
+                  {(['auto', 'manual'] as const).map(m => (
+                    <button
+                      key={m}
+                      onClick={() => saveSettings({ hideMode: m })}
+                      className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-colors ${
+                        (settings.hideMode ?? 'auto') === m
+                          ? 'bg-[#00c896] text-black'
+                          : 'bg-[#1a1a1a] text-[#555] border border-[#333]'
+                      }`}
+                    >
+                      {m === 'auto' ? '⚡ Automático' : '🎚 Manual'}
+                    </button>
+                  ))}
+                </div>
+                {(settings.hideMode ?? 'auto') === 'auto' && (
+                  <p className="text-xs text-[#444]">Basado en tus objetivos mensuales o comparación con el mes anterior.</p>
+                )}
+                {settings.hideMode === 'manual' && (
+                  <div>
+                    <div className="flex justify-between text-xs text-[#555] mb-1.5">
+                      <span>Posición de la barra</span>
+                      <span className="font-bold text-[#f0ece4]">{settings.manualProgress ?? 50}%</span>
+                    </div>
+                    <input
+                      type="range" min="0" max="100" step="1"
+                      value={settings.manualProgress ?? 50}
+                      onChange={e => saveSettings({ manualProgress: parseInt(e.target.value) })}
+                      className="w-full accent-[#00c896]"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
 

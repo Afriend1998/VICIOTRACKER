@@ -7,7 +7,7 @@ import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement } fr
 import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
 import { getStreak } from '../lib/streaks'
 import { checkAndUnlock } from '../lib/achievements'
-import { getQualitativeStatus } from '../lib/goals'
+import { getProgressScore } from '../lib/goals'
 import type { Tap } from '../types'
 
 const TAP_MILESTONES = [10, 25, 50, 100, 250, 500]
@@ -20,6 +20,8 @@ export default function Home() {
   const [alertDismissed, setAlertDismissed] = useState(false)
   const [lostChallenge, setLostChallenge] = useState<{ description: string; penalty: number } | null>(null)
   const lostTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [urgeReminder, setUrgeReminder] = useState<{ viceId: string; text: string } | null>(null)
+  const urgeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const data = getData()
   const { vices, taps, settings } = data
@@ -32,7 +34,8 @@ export default function Home() {
   const projected20y = calculateFV(investSuggest, 0.08, 240)
   const cur = settings.currency === 'EUR' ? '€' : '$'
   const hide = settings.hideSpendAmounts ?? false
-  const qualStatus = hide ? getQualitativeStatus(taps) : null
+  const progressScore = hide ? getProgressScore(vices, taps, settings) : 0
+  const progressColor = `hsl(${Math.round(progressScore * 1.2)}, 80%, 45%)`
 
   const STREAK_MILESTONES = [1, 3, 7, 14, 30, 60, 90]
 
@@ -97,6 +100,24 @@ export default function Home() {
     setUndo({ viceId, name: viceName, emoji: viceEmoji })
     undoTimer.current = setTimeout(() => setUndo(null), 10000)
 
+    // Recordatorio si-entonces al superar límite diario (una vez por día)
+    const vice = getData().vices.find(v => v.id === viceId)
+    if (vice?.ifUrge && vice.dailyLimit) {
+      const newDailyCount = getData().taps.filter(t => {
+        const d = new Date(t.timestamp); const today = new Date()
+        return t.viceId === viceId && d.toDateString() === today.toDateString()
+      }).length
+      if (newDailyCount > vice.dailyLimit) {
+        const shownKey = `ifurge-shown-${viceId}-${new Date().toDateString()}`
+        if (!localStorage.getItem(shownKey)) {
+          localStorage.setItem(shownKey, '1')
+          if (urgeTimer.current) clearTimeout(urgeTimer.current)
+          setUrgeReminder({ viceId, text: vice.ifUrge })
+          urgeTimer.current = setTimeout(() => setUrgeReminder(null), 8000)
+        }
+      }
+    }
+
     setTick(t => t + 1)
   }, [taps])
 
@@ -129,16 +150,10 @@ export default function Home() {
     <Layout>
       <div className="px-5 pt-6 pb-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <div>
             <p className="text-xs text-[#555] uppercase tracking-widest font-medium">Hoy</p>
-            {hide ? (
-              <p className={`text-2xl font-black ${qualStatus === 'bien' ? 'text-[#00c896]' : qualStatus === 'mal' ? 'text-[#ff3b30]' : 'text-[#f0ece4]'}`}>
-                {qualStatus === 'bien' ? '✅ Vas bien' : qualStatus === 'mal' ? '⚠️ Vas mal' : '—'}
-              </p>
-            ) : (
-              <p className="text-3xl font-black text-[#f0ece4]">{cur}{totalToday.toFixed(2)}</p>
-            )}
+            {!hide && <p className="text-3xl font-black text-[#f0ece4]">{cur}{totalToday.toFixed(2)}</p>}
           </div>
           <div className="text-right">
             <p className="text-xs text-[#555]">
@@ -146,6 +161,22 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+        {/* Barra de progreso (ocultar gasto) */}
+        {hide && (
+          <div className="mb-5">
+            <div className="flex justify-between text-xs text-[#555] mb-1.5">
+              <span>Tu progreso este mes</span>
+              <span style={{ color: progressColor }}>{progressScore}%</span>
+            </div>
+            <div className="h-3 rounded-full bg-[#1a1a1a] overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-700"
+                style={{ width: `${progressScore}%`, backgroundColor: progressColor }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Vice buttons */}
         {(() => {
@@ -184,6 +215,11 @@ export default function Home() {
                     />
                     {streak >= 2 && vice.dailyLimit && (
                       <p className="text-[10px] text-[#00c896] font-bold mt-1">🔥 {streak}d</p>
+                    )}
+                    {vice.ifUrge && (
+                      <p className="text-[10px] text-[#444] mt-1 text-center max-w-[90px] leading-tight">
+                        💡 {vice.ifUrge}
+                      </p>
                     )}
                   </div>
                 )
@@ -270,6 +306,17 @@ export default function Home() {
                 Break Even →
               </a>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Toast si-entonces */}
+      {urgeReminder && (
+        <div className="fixed top-1/4 -translate-y-1/2 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[390px]">
+          <div className="bg-[#1a1a1a] border border-[#00c896]/40 rounded-2xl px-4 py-3 shadow-xl">
+            <p className="text-xs font-bold text-[#00c896] mb-1">💡 Recuerda tu plan</p>
+            <p className="text-sm text-[#f0ece4]">{urgeReminder.text}</p>
+            <button onClick={() => setUrgeReminder(null)} className="text-[#444] text-xs mt-2">Cerrar</button>
           </div>
         </div>
       )}
