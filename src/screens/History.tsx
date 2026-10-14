@@ -30,7 +30,7 @@ export default function History() {
         )}
 
         {Object.entries(groups).map(([date, dayTaps]) => {
-          const dayTotal = dayTaps.reduce((s, t) => s + t.priceAtTap, 0)
+          const dayTotal = dayTaps.reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
           return (
             <div key={date} className="mb-6">
               <div className="flex items-center justify-between mb-2">
@@ -49,7 +49,9 @@ export default function History() {
                         <p className="text-sm font-medium text-[#f0ece4]">{vice.name}</p>
                         <p className="text-xs text-[#555]">{time}</p>
                       </div>
-                      <p className="text-sm font-bold text-[#f0ece4]">{cur}{tap.priceAtTap.toFixed(2)}</p>
+                      {tap.priceAtTap != null && (
+                        <p className="text-sm font-bold text-[#f0ece4]">{cur}{tap.priceAtTap.toFixed(2)}</p>
+                      )}
                     </div>
                   )
                 })}

@@ -119,7 +119,7 @@ export default function Settings() {
   const [tick, setTick] = useState(0)
   const [showAddForm, setShowAddForm] = useState((location.state as { openAdd?: boolean } | null)?.openAdd === true)
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
-  const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '' })
+  const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '', sinValor: false })
   const [confirmReset, setConfirmReset] = useState(false)
 
   const data = getData()
@@ -131,18 +131,18 @@ export default function Settings() {
   }
 
   function handleAddVice() {
-    if (!newVice.name || !newVice.emoji || !newVice.unitPrice) return
+    if (!newVice.name || !newVice.emoji || (!newVice.sinValor && !newVice.unitPrice)) return
     addVice({
       id: crypto.randomUUID(),
       name: newVice.name.trim(),
       emoji: newVice.emoji.trim(),
-      unitPrice: parseFloat(newVice.unitPrice),
+      unitPrice: newVice.sinValor ? undefined : parseFloat(newVice.unitPrice),
       category: newVice.category,
       healthMetrics: {},
       dailyLimit: newVice.dailyLimit ? parseInt(newVice.dailyLimit) : undefined,
       createdAt: new Date().toISOString(),
     })
-    setNewVice({ name: '', emoji: '', unitPrice: '', category: 'energy-drink', dailyLimit: '' })
+    setNewVice({ name: '', emoji: '', unitPrice: '', category: 'energy-drink', dailyLimit: '', sinValor: false })
     setShowAddForm(false)
     setTick(t => t + 1)
   }
@@ -163,7 +163,7 @@ export default function Settings() {
         {/* Vices */}
         <section className="mb-6">
           <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">
-            Mis vicios ({vices.length}/5)
+            Mis vicios ({vices.length}/3)
           </p>
           <div className="flex flex-col gap-2">
             {vices.map(v => (
@@ -175,7 +175,7 @@ export default function Settings() {
               />
             ))}
           </div>
-          {vices.length < 5 && !showAddForm && (
+          {vices.length < 3 && !showAddForm && (
             <button
               onClick={() => setShowAddForm(true)}
               className="mt-3 w-full py-3 rounded-xl border border-dashed border-[#333] text-[#555] text-sm"
@@ -213,8 +213,21 @@ export default function Settings() {
                 )}
               </div>
 
+              {/* Sin valor toggle */}
+              <button
+                type="button"
+                onClick={() => setNewVice(f => ({ ...f, sinValor: !f.sinValor }))}
+                className="flex items-center gap-3 text-left"
+              >
+                <div className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${newVice.sinValor ? 'bg-[#00c896]' : 'bg-[#222]'}`}>
+                  <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${newVice.sinValor ? 'left-6' : 'left-1'}`} />
+                </div>
+                <span className="text-sm text-[#888]">No tiene coste económico</span>
+              </button>
+
               {/* Precio + Límite */}
               <div className="flex gap-3">
+                {!newVice.sinValor && (
                 <div className="flex-1">
                   <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Precio por unidad</p>
                   <div className="relative">
@@ -228,6 +241,7 @@ export default function Settings() {
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">€</span>
                   </div>
                 </div>
+                )}
                 <div className="flex-1">
                   <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Aviso diario</p>
                   <div className="relative">

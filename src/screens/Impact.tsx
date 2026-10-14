@@ -42,7 +42,7 @@ export default function Impact() {
   const prevWeekStart = new Date(prevWeekEnd); prevWeekStart.setDate(prevWeekEnd.getDate() - 7)
   const prevWeek = taps
     .filter(t => { const d = new Date(t.timestamp); return d >= prevWeekStart && d < prevWeekEnd })
-    .reduce((s, t) => s + t.priceAtTap, 0)
+    .reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
   const weekDiff = prevWeek > 0 ? ((thisWeek - prevWeek) / prevWeek) * 100 : 0
 
   const handleShare = useCallback(() => {

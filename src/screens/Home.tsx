@@ -46,7 +46,7 @@ export default function Home() {
     })
   }, [tick])
 
-  const handleTap = useCallback((viceId: string, unitPrice: number, viceName: string, viceEmoji: string) => {
+  const handleTap = useCallback((viceId: string, unitPrice: number | undefined, viceName: string, viceEmoji: string) => {
     const current = getData()
     const activeChallengeForVice = current.challenges.find(
       c => c.status === 'active' && c.viceId === viceId
@@ -120,7 +120,7 @@ export default function Home() {
 
         {/* Vice buttons */}
         {(() => {
-          const showAdd = vices.length < 5
+          const showAdd = vices.length < 3
           const total = vices.length + (showAdd ? 1 : 0)
 
           type Size = 'large' | 'medium' | 'small'

@@ -19,7 +19,7 @@ export function getMonthlySpend(taps: Tap[], viceId?: string): number {
   )
   const diffMs = Date.now() - new Date(sorted[0].timestamp).getTime()
   const diffMonths = Math.max(diffMs / (1000 * 60 * 60 * 24 * 30.44), 1)
-  const total = filtered.reduce((s, t) => s + t.priceAtTap, 0)
+  const total = filtered.reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
   return total / diffMonths
 }
 
@@ -37,7 +37,7 @@ export function getTotalSpent(taps: Tap[], period: Period, viceId?: string): num
         default: return true
       }
     })
-    .reduce((s, t) => s + t.priceAtTap, 0)
+    .reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
 }
 
 export function getDailyTaps(taps: Tap[], viceId: string): number {
@@ -70,7 +70,7 @@ export function getProjections(monthlySpend: number): {
 export function getSpendByDayOfWeek(taps: Tap[]): { day: string; amount: number }[] {
   const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
   const totals = new Array(7).fill(0)
-  taps.forEach(t => { totals[new Date(t.timestamp).getDay()] += t.priceAtTap })
+  taps.forEach(t => { totals[new Date(t.timestamp).getDay()] += (t.priceAtTap ?? 0) })
   return days.map((day, i) => ({ day, amount: parseFloat(totals[i].toFixed(2)) }))
 }
 
@@ -96,7 +96,7 @@ export function getChartData(taps: Tap[], annualRate: number): ChartPoint[] {
 
     const spentSoFar = sorted
       .filter(t => new Date(t.timestamp) <= date)
-      .reduce((s, t) => s + t.priceAtTap, 0)
+      .reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
 
     const months = Math.max(m, 1)
     const monthly = spentSoFar / months
