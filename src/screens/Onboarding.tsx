@@ -30,11 +30,12 @@ interface ViceForm {
   sugar: string
   dailyLimit: string
   showHealth: boolean
+  sinValor: boolean
 }
 
 const emptyForm = (): ViceForm => ({
   name: '', emoji: '', unitPrice: '', category: 'energy-drink',
-  caffeine: '', calories: '', sugar: '', dailyLimit: '', showHealth: false,
+  caffeine: '', calories: '', sugar: '', dailyLimit: '', showHealth: false, sinValor: false,
 })
 
 interface Props { onComplete: () => void }
@@ -66,7 +67,7 @@ export default function Onboarding({ onComplete }: Props) {
     const e: Partial<ViceForm> = {}
     if (!form.name.trim())  e.name = 'Obligatorio'
     if (!form.emoji.trim()) e.emoji = 'Elige un emoji'
-    if (!form.unitPrice || isNaN(+form.unitPrice) || +form.unitPrice <= 0)
+    if (!form.sinValor && (!form.unitPrice || isNaN(+form.unitPrice) || +form.unitPrice <= 0))
       e.unitPrice = 'Precio inválido'
     setErrors(e)
     return Object.keys(e).length === 0
@@ -78,7 +79,7 @@ export default function Onboarding({ onComplete }: Props) {
       id: crypto.randomUUID(),
       name: form.name.trim(),
       emoji: form.emoji.trim(),
-      unitPrice: parseFloat(form.unitPrice),
+      unitPrice: form.sinValor ? undefined : parseFloat(form.unitPrice),
       category: form.category,
       healthMetrics: {
         caffeine: form.caffeine ? parseFloat(form.caffeine) : undefined,
@@ -94,7 +95,7 @@ export default function Onboarding({ onComplete }: Props) {
     setErrors({})
     setShowEmojiPicker(false)
 
-    if (vices.length + 1 >= 5) {
+    if (vices.length + 1 >= 3) {
       finalise()
     }
   }
@@ -127,7 +128,7 @@ export default function Onboarding({ onComplete }: Props) {
                 Registra tus hábitos de consumo y descubre cuánto valen si los inviertes en lugar de gastarlos.
               </p>
               <div className="flex flex-col gap-2 text-sm text-[#555] text-left w-full max-w-xs">
-                <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> Hasta 5 vicios en el tier gratuito</div>
+                <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> Hasta 3 vicios</div>
                 <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> 100% offline · sin cuenta</div>
                 <div className="flex items-center gap-2"><span className="text-[#00c896]">✓</span> Simulación de inversión real</div>
               </div>
@@ -156,9 +157,9 @@ export default function Onboarding({ onComplete }: Props) {
                   <h2 className="text-2xl font-black text-[#f0ece4]">
                     {vices.length === 0 ? 'Tu primer vicio' : `Vicio #${vices.length + 1}`}
                   </h2>
-                  {vices.length > 0 && (
+                  {vices.length > 0 && vices.length < 2 && (
                     <p className="text-sm text-[#555]">
-                      Ya tienes: {vices.map(v => v.emoji).join(' ')} · {5 - vices.length} más disponibles
+                      Ya tienes: {vices.map(v => v.emoji).join(' ')} · {3 - vices.length} más disponibles
                     </p>
                   )}
                 </div>
@@ -220,19 +221,33 @@ export default function Onboarding({ onComplete }: Props) {
                 />
               )}
 
+              {/* Sin valor toggle */}
+              <button
+                type="button"
+                onClick={() => set('sinValor', !form.sinValor)}
+                className="flex items-center gap-3 text-left"
+              >
+                <div className={`w-11 h-6 rounded-full relative transition-colors shrink-0 ${form.sinValor ? 'bg-[#00c896]' : 'bg-[#222]'}`}>
+                  <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${form.sinValor ? 'left-6' : 'left-1'}`} />
+                </div>
+                <span className="text-sm text-[#888]">No tiene coste económico (ej. comida, tiempo)</span>
+              </button>
+
               {/* Precio + Límite */}
               <div className="flex gap-3">
-                <div className="flex-1">
-                  <label className="label">Precio por unidad (€)</label>
-                  <input
-                    className={`input ${errors.unitPrice ? 'border-[#ff3b30]' : ''}`}
-                    type="number" inputMode="decimal"
-                    value={form.unitPrice}
-                    onChange={e => set('unitPrice', e.target.value)}
-                    placeholder="1.95" min="0" step="0.01"
-                  />
-                  {errors.unitPrice && <p className="err">{errors.unitPrice}</p>}
-                </div>
+                {!form.sinValor && (
+                  <div className="flex-1">
+                    <label className="label">Precio por unidad (€)</label>
+                    <input
+                      className={`input ${errors.unitPrice ? 'border-[#ff3b30]' : ''}`}
+                      type="number" inputMode="decimal"
+                      value={form.unitPrice}
+                      onChange={e => set('unitPrice', e.target.value)}
+                      placeholder="1.95" min="0" step="0.01"
+                    />
+                    {errors.unitPrice && <p className="err">{errors.unitPrice}</p>}
+                  </div>
+                )}
                 <div className="flex-1">
                   <label className="label">Límite diario (aviso)</label>
                   <input
@@ -284,7 +299,7 @@ export default function Onboarding({ onComplete }: Props) {
                   onClick={saveVice}
                   className="w-full py-4 rounded-2xl bg-[#00c896] text-black font-bold text-base"
                 >
-                  {vices.length < 4 ? 'Guardar y añadir otro +' : 'Guardar →'}
+                  {vices.length < 2 ? 'Guardar y añadir otro +' : 'Guardar →'}
                 </button>
                 {vices.length > 0 && (
                   <button

@@ -10,7 +10,7 @@ export interface Vice {
   id: string
   name: string
   emoji: string
-  unitPrice: number
+  unitPrice?: number
   category: Category
   healthMetrics: HealthMetrics
   dailyLimit?: number
@@ -20,7 +20,7 @@ export interface Vice {
 export interface Tap {
   viceId: string
   timestamp: string
-  priceAtTap: number
+  priceAtTap?: number
 }
 
 export interface Settings {
