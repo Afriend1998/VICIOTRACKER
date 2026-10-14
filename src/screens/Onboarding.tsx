@@ -325,7 +325,7 @@ export default function Onboarding({ onComplete }: Props) {
                   <div key={v.id} className="flex flex-col items-center gap-1 bg-[#111] border border-[#222] rounded-2xl p-3">
                     <span className="text-3xl">{v.emoji}</span>
                     <span className="text-xs text-[#888]">{v.name}</span>
-                    <span className="text-sm font-bold text-[#f0ece4]">{v.unitPrice.toFixed(2)}€</span>
+                    {v.unitPrice != null && <span className="text-sm font-bold text-[#f0ece4]">{v.unitPrice.toFixed(2)}€</span>}
                   </div>
                 ))}
               </div>

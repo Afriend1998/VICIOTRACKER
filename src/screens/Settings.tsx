@@ -108,7 +108,7 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
       <div className="flex-1 min-w-0">
         <p className="text-sm font-semibold text-[#f0ece4] truncate">{vice.name}</p>
         <p className="text-xs text-[#555]">
-          {vice.unitPrice.toFixed(2)}€ / unidad
+          {vice.unitPrice != null ? `${vice.unitPrice.toFixed(2)}€ / unidad` : 'Sin coste'}
           {vice.dailyLimit ? ` · límite ${vice.dailyLimit}/día` : ''}
         </p>
       </div>
