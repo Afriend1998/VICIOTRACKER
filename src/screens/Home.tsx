@@ -194,7 +194,7 @@ export default function Home() {
             cols = 'grid-cols-3'; size = 'small'; gap = 'gap-3'
           }
 
-          const btnSize = { large: 'w-40 h-40', medium: 'w-32 h-32', small: 'w-24 h-24' }[size]
+          const btnSize = { large: 'w-40 h-40 sm:w-44 sm:h-44', medium: 'w-32 h-32 sm:w-36 sm:h-36', small: 'w-24 h-24 sm:w-28 sm:h-28' }[size]
           const plusSize = { large: 'text-4xl', medium: 'text-3xl', small: 'text-2xl' }[size]
           const spacer  = { large: 'h-[60px]', medium: 'h-[52px]', small: 'h-[42px]' }[size]
 
@@ -224,19 +224,19 @@ export default function Home() {
                     {/* Barra de enganche */}
                     {(() => {
                       const score = getAddictionScore(vice, taps)
-                      const barW = size === 'large' ? 'w-40' : size === 'medium' ? 'w-32' : 'w-24'
+                      const barW = size === 'large' ? 'w-40 sm:w-44' : size === 'medium' ? 'w-32 sm:w-36' : 'w-24 sm:w-28'
                       return (
                         <div className={`${barW} mt-2`}>
                           <div className="relative h-2 rounded-full overflow-visible"
-                            style={{ background: 'linear-gradient(to right, #ff3b30, #ffd60a 50%, #00c896)' }}>
+                            style={{ background: 'linear-gradient(to right, #00c896, #ffd60a 50%, #ff3b30)' }}>
                             <div
                               className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white border-2 border-[#0a0a0a] shadow transition-all duration-500"
-                              style={{ left: `${score}%` }}
+                              style={{ left: `${100 - score}%` }}
                             />
                           </div>
                           <div className="flex justify-between text-[8px] mt-1 text-[#555]">
-                            <span>😣</span>
                             <span>😊</span>
+                            <span>😣</span>
                           </div>
                         </div>
                       )
