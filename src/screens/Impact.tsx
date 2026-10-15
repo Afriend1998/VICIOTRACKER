@@ -237,6 +237,50 @@ export default function Impact() {
           </div>
         )}
 
+        {/* Totales históricos por vicio */}
+        {taps.length > 0 && (
+          <div className="mt-5">
+            <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">Desde el inicio</p>
+            <div className="flex flex-col gap-2">
+              {vices.map(vice => {
+                const viceTaps = taps.filter(t => t.viceId === vice.id)
+                const totalUnits = viceTaps.length
+                const totalSpent = viceTaps.reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
+                if (totalUnits === 0) return null
+                const invested = totalSpent * Math.pow(1.08, 20)
+                return (
+                  <div key={vice.id} className="bg-[#111] border border-[#1a1a1a] rounded-2xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xl">{vice.emoji}</span>
+                      <p className="text-sm font-bold text-[#f0ece4]">{vice.name}</p>
+                    </div>
+                    <div className={`grid gap-3 text-center ${totalSpent > 0 ? 'grid-cols-3' : 'grid-cols-1'}`}>
+                      <div>
+                        <p className="text-2xl font-black text-[#f0ece4]">{totalUnits}</p>
+                        <p className="text-[10px] text-[#555] mt-0.5">unidades totales</p>
+                      </div>
+                      {totalSpent > 0 && (
+                        <>
+                          <div>
+                            <p className="text-2xl font-black text-[#ff3b30]">{cur}{totalSpent.toFixed(0)}</p>
+                            <p className="text-[10px] text-[#555] mt-0.5">gastados</p>
+                          </div>
+                          <div>
+                            <p className="text-xl font-black text-[#00c896]">
+                              {invested >= 1000 ? `${cur}${(invested / 1000).toFixed(1)}k` : `${cur}${invested.toFixed(0)}`}
+                            </p>
+                            <p className="text-[10px] text-[#555] mt-0.5">si invertido 20a</p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Day of week */}
         {taps.length > 0 && (
           <div className="mt-5">

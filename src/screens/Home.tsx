@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import ViceButton from '../components/ViceButton'
 import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement } from '../lib/storage'
 import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
-import { getStreak } from '../lib/streaks'
+import { getStreak, getCleanStreak } from '../lib/streaks'
 import { checkAndUnlock } from '../lib/achievements'
 import { getProgressScore } from '../lib/goals'
 import type { Tap } from '../types'
@@ -228,9 +228,18 @@ export default function Home() {
                       onTap={() => handleTap(vice.id, vice.unitPrice, vice.name, vice.emoji)}
                       size={size}
                     />
-                    {streak >= 2 && vice.dailyLimit && (
-                      <p className="text-[10px] text-[#00c896] font-bold mt-1">🔥 {streak}d</p>
-                    )}
+                    {(() => {
+                      const cleanStreak = getCleanStreak(vice, taps)
+                      if (cleanStreak >= 1) return (
+                        <p className="text-[10px] text-[#00c896] font-bold mt-1 animate-pulse">
+                          ✨ {cleanStreak === 1 ? '1 día sin consumir' : `${cleanStreak} días sin consumir`}
+                        </p>
+                      )
+                      if (streak >= 2 && vice.dailyLimit) return (
+                        <p className="text-[10px] text-[#00c896] font-bold mt-1">🔥 {streak}d bajo control</p>
+                      )
+                      return null
+                    })()}
                     {vice.ifUrge && (
                       <p className="text-[10px] text-[#444] mt-1 text-center max-w-[90px] leading-tight">
                         💡 {vice.ifUrge}

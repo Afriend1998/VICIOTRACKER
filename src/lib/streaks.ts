@@ -43,6 +43,23 @@ export function getBestStreak(vice: Vice, taps: Tap[]): number {
   return best
 }
 
+// Días consecutivos sin consumir ninguna unidad de ese vicio
+export function getCleanStreak(vice: Vice, taps: Tap[]): number {
+  const viceTaps = taps.filter(t => t.viceId === vice.id)
+  let streak = 0
+  const today = new Date()
+  const createdAt = new Date(vice.createdAt)
+  for (let i = 0; i < 365; i++) {
+    const d = new Date(today)
+    d.setDate(today.getDate() - i)
+    if (d < createdAt) break
+    const dayCount = viceTaps.filter(t => new Date(t.timestamp).toDateString() === d.toDateString()).length
+    if (dayCount === 0) streak++
+    else break
+  }
+  return streak
+}
+
 export function evaluateChallenge(challenge: { viceId: string; startDate: string; daysTarget: number }, taps: Tap[]): 'active' | 'won' | 'lost' {
   const start = new Date(challenge.startDate)
   const end = new Date(start)
