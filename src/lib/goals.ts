@@ -60,19 +60,3 @@ export function getProgressScore(vices: Vice[], taps: Tap[], settings: Settings)
   return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length)
 }
 
-export function getQualitativeStatus(taps: Tap[]): 'bien' | 'mal' | 'neutral' {
-  const now = new Date()
-  const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1)
-  const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
-  const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 1)
-
-  const thisSpend = taps
-    .filter(t => new Date(t.timestamp) >= thisMonth)
-    .reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
-  const prevSpend = taps
-    .filter(t => { const d = new Date(t.timestamp); return d >= lastMonth && d < lastMonthEnd })
-    .reduce((s, t) => s + (t.priceAtTap ?? 0), 0)
-
-  if (prevSpend === 0) return 'neutral'
-  return thisSpend <= prevSpend ? 'bien' : 'mal'
-}

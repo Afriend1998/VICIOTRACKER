@@ -29,13 +29,14 @@ interface ViceForm {
   calories: string
   sugar: string
   dailyLimit: string
+  ifUrge: string
   showHealth: boolean
   sinValor: boolean
 }
 
 const emptyForm = (): ViceForm => ({
   name: '', emoji: '', unitPrice: '', category: 'energy-drink',
-  caffeine: '', calories: '', sugar: '', dailyLimit: '', showHealth: false, sinValor: false,
+  caffeine: '', calories: '', sugar: '', dailyLimit: '', ifUrge: '', showHealth: false, sinValor: false,
 })
 
 interface Props { onComplete: () => void }
@@ -87,6 +88,7 @@ export default function Onboarding({ onComplete }: Props) {
         sugar:    form.sugar    ? parseFloat(form.sugar)    : undefined,
       },
       dailyLimit: form.dailyLimit ? parseInt(form.dailyLimit) : undefined,
+      ifUrge: form.ifUrge.trim() || undefined,
       createdAt: new Date().toISOString(),
     }
     addVice(vice)
@@ -258,6 +260,17 @@ export default function Onboarding({ onComplete }: Props) {
                     placeholder="2" min="1"
                   />
                 </div>
+              </div>
+
+              {/* Si siento ganas */}
+              <div>
+                <label className="label">Si siento ganas, en vez de consumir voy a… (opcional)</label>
+                <input
+                  className="input"
+                  value={form.ifUrge}
+                  onChange={e => set('ifUrge', e.target.value)}
+                  placeholder="Dar una vuelta, beber agua…"
+                />
               </div>
 
               {/* Métricas de salud */}

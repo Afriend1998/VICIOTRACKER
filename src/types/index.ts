@@ -16,6 +16,7 @@ export interface Vice {
   dailyLimit?: number
   monthlyGoal?: number
   ifUrge?: string
+  engagementLevel?: number  // 0 = muy enganchado, 100 = genial
   createdAt: string
 }
 

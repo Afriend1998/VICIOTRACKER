@@ -18,6 +18,7 @@ export default function Challenges() {
   const data = getData()
   const { vices, taps, challenges, unlockedAchievements } = data
   const cur = data.settings.currency === 'EUR' ? '€' : '$'
+  const hide = data.settings.hideSpendAmounts ?? false
 
   useEffect(() => {
     const updated = checkAndUnlock(data)
@@ -97,7 +98,7 @@ export default function Challenges() {
                           <span className="text-2xl">{vice?.emoji}</span>
                           <div>
                             <p className="text-sm font-bold text-[#f0ece4]">{c.description}</p>
-                            <p className="text-xs text-[#555]">Penalización: {cur}{c.penalty}</p>
+                            {!hide && <p className="text-xs text-[#555]">Penalización: {cur}{c.penalty}</p>}
                           </div>
                         </div>
                         <div className="text-right">
@@ -128,13 +129,13 @@ export default function Challenges() {
                           <span className="text-xl">{vice?.emoji}</span>
                           <div>
                             <p className="text-sm font-semibold text-[#f0ece4]">{c.description}</p>
-                            {!won && (
+                            {!won && !hide && (
                               <p className="text-xs text-[#ff3b30] mt-0.5">
                                 Deberías invertir {cur}{c.penalty} →{' '}
                                 <a href="https://afriend1998.github.io/break_even/" target="_blank" rel="noopener noreferrer" className="underline">Break Even</a>
                               </p>
                             )}
-                            {won && (
+                            {won && !hide && (
                               <p className="text-xs text-[#00c896] mt-0.5">
                                 Ahorraste {cur}{(vice?.unitPrice ?? 0) * c.daysTarget} en {c.daysTarget} días 💰
                               </p>

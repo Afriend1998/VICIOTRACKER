@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import confetti from 'canvas-confetti'
 import Layout from '../components/Layout'
 import ViceButton from '../components/ViceButton'
-import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement } from '../lib/storage'
+import { getData, addTap, removeLastTap, updateChallenge, unlockAchievement, updateVice } from '../lib/storage'
 import { getDailyTaps, getTotalSpent, getMonthlySpend, calculateFV } from '../lib/finance'
 import { getStreak, getCleanStreak } from '../lib/streaks'
 import { checkAndUnlock } from '../lib/achievements'
@@ -29,14 +29,31 @@ export default function Home() {
   const [addictionLevels, setAddictionLevels] = useState<Record<string, number>>(() => {
     const levels: Record<string, number> = {}
     _vices.forEach(v => {
-      const stored = localStorage.getItem(`addiction-level-${v.id}`)
-      levels[v.id] = stored !== null ? parseInt(stored) : 50
+      if (v.engagementLevel !== undefined) {
+        levels[v.id] = v.engagementLevel
+      } else {
+        const stored = localStorage.getItem(`addiction-level-${v.id}`)
+        levels[v.id] = stored !== null ? parseInt(stored) : 50
+      }
     })
     return levels
   })
 
+  // Migrate old localStorage keys to vice.engagementLevel once
+  useEffect(() => {
+    _vices.forEach(v => {
+      if (v.engagementLevel === undefined) {
+        const stored = localStorage.getItem(`addiction-level-${v.id}`)
+        if (stored !== null) {
+          updateVice(v.id, { engagementLevel: parseInt(stored) })
+          localStorage.removeItem(`addiction-level-${v.id}`)
+        }
+      }
+    })
+  }, [])
+
   function handleAddictionChange(viceId: string, value: number) {
-    localStorage.setItem(`addiction-level-${viceId}`, String(value))
+    updateVice(viceId, { engagementLevel: value })
     setAddictionLevels(prev => ({ ...prev, [viceId]: value }))
   }
   const { vices, taps, settings } = data

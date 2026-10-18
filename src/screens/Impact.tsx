@@ -238,7 +238,7 @@ export default function Impact() {
         )}
 
         {/* Totales históricos por vicio */}
-        {taps.length > 0 && (
+        {!hide && taps.length > 0 && (
           <div className="mt-5">
             <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">Desde el inicio</p>
             <div className="flex flex-col gap-2">
@@ -282,7 +282,7 @@ export default function Impact() {
         )}
 
         {/* Day of week */}
-        {taps.length > 0 && (
+        {!hide && taps.length > 0 && (
           <div className="mt-5">
             <p className="text-xs text-[#555] uppercase tracking-widest font-medium mb-3">
               Gasto por día de la semana

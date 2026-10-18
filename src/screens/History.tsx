@@ -6,6 +6,7 @@ const VICE_COLORS = ['#00c896', '#f59e0b', '#818cf8']
 export default function History() {
   const { taps, vices, settings } = getData()
   const cur = settings.currency === 'EUR' ? '€' : '$'
+  const hide = settings.hideSpendAmounts ?? false
   const viceMap = Object.fromEntries(vices.map(v => [v.id, v]))
   const viceColorMap = Object.fromEntries(vices.map((v, i) => [v.id, VICE_COLORS[i % VICE_COLORS.length]]))
 
@@ -68,7 +69,7 @@ export default function History() {
                 <p className="text-lg mb-1">{t.vice.emoji}</p>
                 <p className="text-xl font-black text-[#f0ece4]">{t.units}</p>
                 <p className="text-[10px] text-[#555]">{t.vice.name}</p>
-                {t.spent > 0 && (
+                {!hide && t.spent > 0 && (
                   <p className="text-xs font-bold mt-1" style={{ color: VICE_COLORS[i % VICE_COLORS.length] }}>
                     {cur}{t.spent.toFixed(0)}
                   </p>
@@ -131,7 +132,7 @@ export default function History() {
             <div key={date} className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-xs text-[#555] uppercase tracking-widest font-medium capitalize">{date}</p>
-                {dayTotal > 0 && <p className="text-xs font-bold text-[#00c896]">{cur}{dayTotal.toFixed(2)}</p>}
+                {!hide && dayTotal > 0 && <p className="text-xs font-bold text-[#00c896]">{cur}{dayTotal.toFixed(2)}</p>}
               </div>
               <div className="flex flex-col gap-2">
                 {dayTaps.map((tap, i) => {
@@ -146,7 +147,7 @@ export default function History() {
                         <p className="text-sm font-medium text-[#f0ece4]">{vice.name}</p>
                         <p className="text-xs text-[#555]">{time}</p>
                       </div>
-                      {tap.priceAtTap != null && (
+                      {!hide && tap.priceAtTap != null && (
                         <p className="text-sm font-bold" style={{ color }}>{cur}{tap.priceAtTap.toFixed(2)}</p>
                       )}
                     </div>

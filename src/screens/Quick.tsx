@@ -7,7 +7,8 @@ import type { Tap } from '../types'
 export default function Quick() {
   const navigate = useNavigate()
   const [done, setDone] = useState<string | null>(null)
-  const { vices } = getData()
+  const { vices, settings } = getData()
+  const hide = settings.hideSpendAmounts ?? false
 
   function handleTap(viceId: string, unitPrice: number | undefined, emoji: string) {
     const tap: Tap = { viceId, timestamp: new Date().toISOString(), priceAtTap: unitPrice }
@@ -44,7 +45,7 @@ export default function Quick() {
                 <span className="text-4xl">{vice.emoji}</span>
                 <div className="text-left">
                   <p className="text-[#f0ece4] font-bold text-lg">{vice.name}</p>
-                  {vice.unitPrice != null && <p className="text-[#555] text-sm">{vice.unitPrice.toFixed(2)}€</p>}
+                  {!hide && vice.unitPrice != null && <p className="text-[#555] text-sm">{vice.unitPrice.toFixed(2)}€</p>}
                 </div>
               </motion.button>
             ))}
