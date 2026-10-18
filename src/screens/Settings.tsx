@@ -23,6 +23,7 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
     monthlyGoal: vice.monthlyGoal ? String(vice.monthlyGoal) : '',
     ifUrge: vice.ifUrge ?? ''
   })
+  const [editErrors, setEditErrors] = useState<{ unitPrice?: string; dailyLimit?: string; monthlyGoal?: string }>({})
 
   if (editing) {
     return (
@@ -48,35 +49,44 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
           />
         )}
         <div className="flex gap-2">
-          <div className="flex-1 relative">
-            <input
-              className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-6"
-              type="number" inputMode="decimal"
-              value={form.unitPrice}
-              onChange={e => setForm(f => ({ ...f, unitPrice: e.target.value }))}
-              placeholder="Precio"
-            />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">€</span>
+          <div className="flex-1">
+            <div className="relative">
+              <input
+                className={`w-full bg-[#1a1a1a] border rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-6 ${editErrors.unitPrice ? 'border-[#ff3b30]' : 'border-[#333]'}`}
+                type="number" inputMode="decimal"
+                value={form.unitPrice}
+                onChange={e => { setForm(f => ({ ...f, unitPrice: e.target.value })); setEditErrors(e2 => ({ ...e2, unitPrice: undefined })) }}
+                placeholder="Precio"
+              />
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">€</span>
+            </div>
+            {editErrors.unitPrice && <p className="text-[10px] text-[#ff3b30] mt-0.5">{editErrors.unitPrice}</p>}
           </div>
-          <div className="flex-1 relative">
-            <input
-              className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10"
-              type="number" inputMode="numeric"
-              value={form.dailyLimit}
-              onChange={e => setForm(f => ({ ...f, dailyLimit: e.target.value }))}
-              placeholder="Límite/día"
-            />
-            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/día</span>
+          <div className="flex-1">
+            <div className="relative">
+              <input
+                className={`w-full bg-[#1a1a1a] border rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10 ${editErrors.dailyLimit ? 'border-[#ff3b30]' : 'border-[#333]'}`}
+                type="number" inputMode="numeric"
+                value={form.dailyLimit}
+                onChange={e => { setForm(f => ({ ...f, dailyLimit: e.target.value })); setEditErrors(e2 => ({ ...e2, dailyLimit: undefined })) }}
+                placeholder="Límite/día"
+              />
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/día</span>
+            </div>
+            {editErrors.dailyLimit && <p className="text-[10px] text-[#ff3b30] mt-0.5">{editErrors.dailyLimit}</p>}
           </div>
-          <div className="flex-1 relative">
-            <input
-              className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10"
-              type="number" inputMode="numeric"
-              value={form.monthlyGoal}
-              onChange={e => setForm(f => ({ ...f, monthlyGoal: e.target.value }))}
-              placeholder="Meta/mes"
-            />
-            <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/mes</span>
+          <div className="flex-1">
+            <div className="relative">
+              <input
+                className={`w-full bg-[#1a1a1a] border rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10 ${editErrors.monthlyGoal ? 'border-[#ff3b30]' : 'border-[#333]'}`}
+                type="number" inputMode="numeric"
+                value={form.monthlyGoal}
+                onChange={e => { setForm(f => ({ ...f, monthlyGoal: e.target.value })); setEditErrors(e2 => ({ ...e2, monthlyGoal: undefined })) }}
+                placeholder="Meta/mes"
+              />
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#555] text-[10px]">/mes</span>
+            </div>
+            {editErrors.monthlyGoal && <p className="text-[10px] text-[#ff3b30] mt-0.5">{editErrors.monthlyGoal}</p>}
           </div>
         </div>
         <input
@@ -88,6 +98,21 @@ function ViceRow({ vice, onDelete, onUpdate }: { vice: Vice; onDelete: () => voi
         <div className="flex gap-2">
           <button
             onClick={() => {
+              const errs: typeof editErrors = {}
+              if (form.unitPrice) {
+                const v = parseFloat(form.unitPrice)
+                if (isNaN(v) || v <= 0) errs.unitPrice = 'Debe ser > 0'
+              }
+              if (form.dailyLimit) {
+                const v = parseInt(form.dailyLimit)
+                if (isNaN(v) || v <= 0) errs.dailyLimit = 'Debe ser > 0'
+              }
+              if (form.monthlyGoal) {
+                const v = parseInt(form.monthlyGoal)
+                if (isNaN(v) || v <= 0) errs.monthlyGoal = 'Debe ser > 0'
+              }
+              if (Object.keys(errs).length > 0) { setEditErrors(errs); return }
+              setEditErrors({})
               onUpdate({
                 name: form.name.trim() || vice.name,
                 emoji: form.emoji || vice.emoji,
@@ -141,6 +166,7 @@ export default function Settings() {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [newVice, setNewVice] = useState({ name: '', emoji: '', unitPrice: '', category: 'energy-drink' as Category, dailyLimit: '', sinValor: false, ifUrge: '' })
   const [confirmReset, setConfirmReset] = useState(false)
+  const [addErrors, setAddErrors] = useState<{ unitPrice?: string; dailyLimit?: string }>({})
 
   const data = getData()
   const { vices, settings } = data
@@ -151,7 +177,18 @@ export default function Settings() {
   }
 
   function handleAddVice() {
-    if (!newVice.name || !newVice.emoji || (!newVice.sinValor && !newVice.unitPrice)) return
+    if (!newVice.name || !newVice.emoji) return
+    const errs: typeof addErrors = {}
+    if (!newVice.sinValor) {
+      const v = parseFloat(newVice.unitPrice)
+      if (!newVice.unitPrice || isNaN(v) || v <= 0) errs.unitPrice = 'El precio debe ser mayor que 0'
+    }
+    if (newVice.dailyLimit) {
+      const v = parseInt(newVice.dailyLimit)
+      if (isNaN(v) || v <= 0) errs.dailyLimit = 'Debe ser mayor que 0'
+    }
+    if (Object.keys(errs).length > 0) { setAddErrors(errs); return }
+    setAddErrors({})
     addVice({
       id: crypto.randomUUID(),
       name: newVice.name.trim(),
@@ -253,28 +290,30 @@ export default function Settings() {
                   <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Precio por unidad</p>
                   <div className="relative">
                     <input
-                      className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-8"
+                      className={`w-full bg-[#1a1a1a] border rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-8 ${addErrors.unitPrice ? 'border-[#ff3b30]' : 'border-[#333]'}`}
                       type="number" inputMode="decimal"
                       value={newVice.unitPrice}
-                      onChange={e => setNewVice(f => ({ ...f, unitPrice: e.target.value }))}
+                      onChange={e => { setNewVice(f => ({ ...f, unitPrice: e.target.value })); setAddErrors(e2 => ({ ...e2, unitPrice: undefined })) }}
                       placeholder="1.95"
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">€</span>
                   </div>
+                  {addErrors.unitPrice && <p className="text-[10px] text-[#ff3b30] mt-0.5">{addErrors.unitPrice}</p>}
                 </div>
                 )}
                 <div className="flex-1">
                   <p className="text-[10px] text-[#555] uppercase tracking-widest mb-2">Aviso diario</p>
                   <div className="relative">
                     <input
-                      className="w-full bg-[#1a1a1a] border border-[#333] rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10"
+                      className={`w-full bg-[#1a1a1a] border rounded-xl px-3 py-2 text-[#f0ece4] text-sm pr-10 ${addErrors.dailyLimit ? 'border-[#ff3b30]' : 'border-[#333]'}`}
                       type="number" inputMode="numeric"
                       value={newVice.dailyLimit}
-                      onChange={e => setNewVice(f => ({ ...f, dailyLimit: e.target.value }))}
+                      onChange={e => { setNewVice(f => ({ ...f, dailyLimit: e.target.value })); setAddErrors(e2 => ({ ...e2, dailyLimit: undefined })) }}
                       placeholder="2"
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] text-xs">/día</span>
                   </div>
+                  {addErrors.dailyLimit && <p className="text-[10px] text-[#ff3b30] mt-0.5">{addErrors.dailyLimit}</p>}
                 </div>
               </div>
 
