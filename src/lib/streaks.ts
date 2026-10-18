@@ -48,11 +48,11 @@ export function getCleanStreak(vice: Vice, taps: Tap[]): number {
   const viceTaps = taps.filter(t => t.viceId === vice.id)
   let streak = 0
   const today = new Date()
-  const createdAt = new Date(vice.createdAt)
+  const createdDateStr = new Date(vice.createdAt).toDateString()
   for (let i = 0; i < 365; i++) {
     const d = new Date(today)
     d.setDate(today.getDate() - i)
-    if (d < createdAt) break
+    if (d.toDateString() === createdDateStr) break  // no contar el día de creación
     const dayCount = viceTaps.filter(t => new Date(t.timestamp).toDateString() === d.toDateString()).length
     if (dayCount === 0) streak++
     else break
